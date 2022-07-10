@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CryptoMinerWatcher"
         tools:targetApi="31">
         <activity
-            android:name=".DetailActivity"
+            android:name=".presentation.layout.DetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
