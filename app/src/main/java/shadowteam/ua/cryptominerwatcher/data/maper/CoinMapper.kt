@@ -9,8 +9,9 @@ import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class CoinMapper {
+class CoinMapper @Inject constructor() {
 
     fun mapNamesListToString(nameListDto: CoinListNameDto):String{
         return nameListDto.name?.map { it.coinName?.name }?.joinToString(",") ?:""
