@@ -9,7 +9,7 @@ import javax.inject.Provider
 
 class RefreshDataWorkerFactory @Inject constructor(
     private val workerProvides: @JvmSuppressWildcards
-    Map<Class<out ListenableWorker>, Provider<ChildWorkerFactory>>,
+    Map<Class<out ListenableWorker>, Provider<ChildWorkerFactory>>
 ) : WorkerFactory() {
 
     override fun createWorker(
