@@ -1,10 +1,13 @@
 package shadowteam.ua.cryptominerwatcher.domain.domaininterface
 
+import androidx.lifecycle.LiveData
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
+
 interface CoinRepository {
 
-    fun getCoinList()
+    fun getCoinList():LiveData<List<CoinInfo>>
 
-    fun getCoinDetail()
+    fun getCoinDetail(fromSymbol :String) : LiveData<CoinInfo>
 
     fun loadData()
 }

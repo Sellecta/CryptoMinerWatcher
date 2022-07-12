@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 class GetCoinListUseCase @Inject constructor(private val repository: CoinRepository){
 
-    fun invoke(){
-        repository.getCoinList()
-    }
+    operator fun invoke() = repository.getCoinList()
+
 }

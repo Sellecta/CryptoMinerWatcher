@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class LoadDataUseCase @Inject constructor(private val repository: CoinRepository) {
 
-    fun invoke() {
+    operator fun invoke() {
      repository.loadData()
     }
 }

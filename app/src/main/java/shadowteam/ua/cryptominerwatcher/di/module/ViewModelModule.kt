@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import shadowteam.ua.cryptominerwatcher.di.annotation.ViewModelKey
-import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.viewmodelfactory.DetailViewModel
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.DetailViewModel
 
 @Module
 interface ViewModelModule {
