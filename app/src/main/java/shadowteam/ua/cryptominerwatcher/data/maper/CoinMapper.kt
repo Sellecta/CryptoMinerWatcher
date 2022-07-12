@@ -25,7 +25,8 @@ class CoinMapper @Inject constructor() {
         highDay = dbModel.highDay,
         lastMarket = dbModel.lastMarket,
         imageUrl = dbModel.imageUrl,
-        lastUpdate = convertTimestampToTime(dbModel.lastUpdate)
+        lastUpdate = convertTimestampToTime(dbModel.lastUpdate),
+        changePCT24Hour = dbModel.changePCT24Hour
     )
 
     private fun convertTimestampToTime(timestamp: Long?):String{
@@ -64,7 +65,8 @@ class CoinMapper @Inject constructor() {
         highDay = coin.highDay,
         lastMarket = coin.lastMarket,
         imageUrl = BASE_IMAGE_URL + coin.imageUrl,
-        lastUpdate = coin.lastUpdate
+        lastUpdate = coin.lastUpdate,
+        changePCT24Hour = coin.changePCT24Hour
     )
 
     companion object{
