@@ -1,16 +1,30 @@
 package shadowteam.ua.cryptominerwatcher.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import shadowteam.ua.cryptominerwatcher.data.database.CryptoMinerDao
+import shadowteam.ua.cryptominerwatcher.data.maper.CoinMapper
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
 import shadowteam.ua.cryptominerwatcher.domain.domaininterface.CoinRepository
+import javax.inject.Inject
 
-class CoinRepositoryImpl: CoinRepository {
+class CoinRepositoryImpl @Inject constructor(
+    private val cryptoMinerDao: CryptoMinerDao,
+    private val coinMapper: CoinMapper
+) : CoinRepository {
+
     override fun getCoinList(): LiveData<List<CoinInfo>> {
-        TODO("Not yet implemented")
+        return Transformations.map(cryptoMinerDao.getAllCoins()){  listCoin ->
+            listCoin.map {
+                coinMapper.mapDbModelToEntity(it)
+            }
+        }
     }
 
     override fun getCoinDetail(fromSymbol: String): LiveData<CoinInfo> {
-        TODO("Not yet implemented")
+        return Transformations.map(cryptoMinerDao.getInfoAboutCoin(fromSymbol)){
+            coinMapper.mapDbModelToEntity(it)
+        }
     }
 
     override fun loadData() {

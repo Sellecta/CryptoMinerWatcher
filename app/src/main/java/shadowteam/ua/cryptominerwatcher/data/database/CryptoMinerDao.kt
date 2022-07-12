@@ -13,7 +13,7 @@ interface CryptoMinerDao {
     fun getAllCoins(): LiveData<List<CoinInfoDbModel>>
 
     @Query("SELECT * FROM coin_table WHERE fromSymbol == :fSym LIMIT 1")
-    fun getPriceInfoAboutCoin(fSym: String): LiveData<CoinInfoDbModel>
+    fun getInfoAboutCoin(fSym: String): LiveData<CoinInfoDbModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCoinInfoList(coinInfo: List<CoinInfoDbModel>)
