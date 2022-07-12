@@ -1,16 +1,21 @@
 package shadowteam.ua.cryptominerwatcher.data.repository
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import shadowteam.ua.cryptominerwatcher.data.database.CryptoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.maper.CoinMapper
+import shadowteam.ua.cryptominerwatcher.data.worker.RefreshDataWorker
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
 import shadowteam.ua.cryptominerwatcher.domain.domaininterface.CoinRepository
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(
     private val cryptoMinerDao: CryptoMinerDao,
-    private val coinMapper: CoinMapper
+    private val coinMapper: CoinMapper,
+    private val application: Application
 ) : CoinRepository {
 
     override fun getCoinList(): LiveData<List<CoinInfo>> {
@@ -28,7 +33,12 @@ class CoinRepositoryImpl @Inject constructor(
     }
 
     override fun loadData() {
-        TODO("Not yet implemented")
+        val worker = WorkManager.getInstance(application)
+        worker.enqueueUniqueWork(
+            RefreshDataWorker.NAME_WORKER,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDataWorker.makeRequest()
+        )
     }
 
 
