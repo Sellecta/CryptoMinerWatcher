@@ -1,9 +1,11 @@
 package shadowteam.ua.cryptominerwatcher.data.network
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
-import shadowteam.ua.cryptominerwatcher.data.network.model.CoinInfoJsonObjectDto
-import shadowteam.ua.cryptominerwatcher.data.network.model.CoinListNameDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.TwoMinerRootDto
 
 interface ApiService {
 
@@ -21,6 +23,9 @@ interface ApiService {
         @Query(QUERY_PARAM_TO_SYMBOLS) toSymbol: String = CURRENCY
     ): CoinInfoJsonObjectDto
 
+    @GET("https://eth.2miners.com/api/accounts/{walletid}")
+    suspend fun getTwoMinersAccount(@Path(WALLET_PATH) wallet:String): TwoMinerRootDto
+
     companion object {
         private const val QUERY_PARAM_API_KEY = "api_key"
         private const val QUERY_PARAM_LIMIT = "limit"
@@ -29,5 +34,6 @@ interface ApiService {
         private const val QUERY_PARAM_FROM_SYMBOLS = "fsyms"
 
         private const val CURRENCY = "USD"
+        private const val WALLET_PATH ="walletid"
     }
 }

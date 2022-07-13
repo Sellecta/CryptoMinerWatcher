@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.data.network.model
+package shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose

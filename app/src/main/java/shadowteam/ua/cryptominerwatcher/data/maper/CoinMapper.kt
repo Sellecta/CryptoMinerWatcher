@@ -2,9 +2,9 @@ package shadowteam.ua.cryptominerwatcher.data.maper
 
 import com.google.gson.Gson
 import shadowteam.ua.cryptominerwatcher.data.database.CoinInfoDbModel
-import shadowteam.ua.cryptominerwatcher.data.network.model.CoinInfoDto
-import shadowteam.ua.cryptominerwatcher.data.network.model.CoinInfoJsonObjectDto
-import shadowteam.ua.cryptominerwatcher.data.network.model.CoinListNameDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
