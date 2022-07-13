@@ -9,5 +9,5 @@ data class CoinInfo(
     val lastMarket: String?,
     val imageUrl: String?,
     val lastUpdate: String,
-    val changePCT24Hour: String?
+    val changePCT24Hour: Double?
 )

@@ -14,5 +14,5 @@ data class CoinInfoDbModel(
     val lastMarket: String?,
     val imageUrl: String?,
     val lastUpdate: Long?,
-    val changePCT24Hour: String?
+    val changePCT24Hour: Double?
 )

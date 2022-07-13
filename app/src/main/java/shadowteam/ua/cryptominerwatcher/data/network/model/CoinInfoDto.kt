@@ -93,7 +93,7 @@ data class CoinInfoDto(
     val change24Hour: String?,
     @SerializedName("CHANGEPCT24HOUR")
     @Expose
-    val changePCT24Hour: String?,
+    val changePCT24Hour: Double?,
     @SerializedName("CHANGEDAY")
     @Expose
     val changeDay: String?,

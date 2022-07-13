@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface CryptoMinerDao {
 
-    @Query("SELECT * FROM coin_table ORDER BY lastUpdate DESC")
+    @Query("SELECT * FROM coin_table")
     fun getAllCoins(): LiveData<List<CoinInfoDbModel>>
 
     @Query("SELECT * FROM coin_table WHERE fromSymbol == :fSym LIMIT 1")

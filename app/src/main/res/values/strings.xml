@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CryptoMinerWatcher</string>
+    <string name="symbols_template">%s / %s</string>
+    <string name="percent_template">%.2f %%</string>
 </resources>
