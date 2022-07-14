@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 class GetTwoMinerWorkerUseCase @Inject constructor(private val repository: TwoMinerRepository) {
 
-    operator fun invoke(){
-        repository.getTwoMinerWorker()
-    }
+    operator fun invoke() = repository.getTwoMinerWorker()
+
 }

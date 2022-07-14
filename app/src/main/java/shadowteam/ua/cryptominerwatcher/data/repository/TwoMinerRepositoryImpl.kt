@@ -3,6 +3,7 @@ package shadowteam.ua.cryptominerwatcher.data.repository
 import androidx.lifecycle.LiveData
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.ConfigAcc
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.Payment
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.TwoMinerAcc
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.Worker
 import shadowteam.ua.cryptominerwatcher.domain.domaininterface.twominer.TwoMinerRepository
 
@@ -12,7 +13,7 @@ class TwoMinerRepositoryImpl : TwoMinerRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getTwoMinerAcc() {
+    override fun getTwoMinerAcc(): LiveData<TwoMinerAcc> {
         TODO("Not yet implemented")
     }
 
