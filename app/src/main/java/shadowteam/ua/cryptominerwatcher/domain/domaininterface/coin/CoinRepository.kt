@@ -1,7 +1,7 @@
-package shadowteam.ua.cryptominerwatcher.domain.domaininterface
+package shadowteam.ua.cryptominerwatcher.domain.domaininterface.coin
 
 import androidx.lifecycle.LiveData
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo
 
 interface CoinRepository {
 

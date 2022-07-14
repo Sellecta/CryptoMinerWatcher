@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.squareup.picasso.Picasso
 import shadowteam.ua.cryptominerwatcher.R
 import shadowteam.ua.cryptominerwatcher.databinding.CardItemCoinBinding
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo
 import javax.inject.Inject
 
 class TopCoinAdapter @Inject constructor(

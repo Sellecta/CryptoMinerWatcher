@@ -4,7 +4,7 @@ package shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 
-data class Payment(
+data class PaymentDto(
     @SerializedName("amount")
     @Expose
     val amount: Int,

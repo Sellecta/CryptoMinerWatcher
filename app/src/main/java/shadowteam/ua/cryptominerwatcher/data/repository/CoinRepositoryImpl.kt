@@ -8,8 +8,8 @@ import androidx.work.WorkManager
 import shadowteam.ua.cryptominerwatcher.data.database.CryptoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.maper.CoinMapper
 import shadowteam.ua.cryptominerwatcher.data.worker.RefreshDataWorker
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
-import shadowteam.ua.cryptominerwatcher.domain.domaininterface.CoinRepository
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo
+import shadowteam.ua.cryptominerwatcher.domain.domaininterface.coin.CoinRepository
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(

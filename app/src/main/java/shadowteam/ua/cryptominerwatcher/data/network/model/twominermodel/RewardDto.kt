@@ -4,7 +4,7 @@ package shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 
-data class Reward(
+data class RewardDto(
     @SerializedName("blockheight")
     @Expose
     val blockheight: Int,

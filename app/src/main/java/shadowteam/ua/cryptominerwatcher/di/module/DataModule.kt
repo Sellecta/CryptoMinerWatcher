@@ -9,15 +9,21 @@ import shadowteam.ua.cryptominerwatcher.data.database.CryptoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.network.ApiFactory
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
 import shadowteam.ua.cryptominerwatcher.data.repository.CoinRepositoryImpl
+import shadowteam.ua.cryptominerwatcher.data.repository.TwoMinerRepositoryImpl
 import shadowteam.ua.cryptominerwatcher.di.annotation.AppScope
-import shadowteam.ua.cryptominerwatcher.domain.domaininterface.CoinRepository
+import shadowteam.ua.cryptominerwatcher.domain.domaininterface.coin.CoinRepository
+import shadowteam.ua.cryptominerwatcher.domain.domaininterface.twominer.TwoMinerRepository
 
 @Module
 interface DataModule {
 
     @Binds
     @AppScope
-    fun bindRepository(impl: CoinRepositoryImpl) : CoinRepository
+    fun bindRepositoryCoin(impl: CoinRepositoryImpl) : CoinRepository
+
+    @Binds
+    @AppScope
+    fun bindRepositoryTwoMiners(impl: TwoMinerRepositoryImpl): TwoMinerRepository
 
     companion object{
 

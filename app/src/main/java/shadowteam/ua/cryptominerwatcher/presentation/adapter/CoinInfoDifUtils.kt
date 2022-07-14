@@ -1,7 +1,7 @@
 package shadowteam.ua.cryptominerwatcher.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo
 
 class CoinInfoDifUtils : DiffUtil.ItemCallback<CoinInfo>() {
     override fun areItemsTheSame(oldItem: CoinInfo, newItem: CoinInfo): Boolean {

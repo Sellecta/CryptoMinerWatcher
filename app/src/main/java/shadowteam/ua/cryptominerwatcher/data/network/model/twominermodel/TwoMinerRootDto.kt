@@ -11,7 +11,7 @@ data class TwoMinerRootDto(
     val apiVersion: Int,
     @SerializedName("config")
     @Expose
-    val config: Config,
+    val config: ConfigDto,
     @SerializedName("currentHashrate")
     @Expose
     val currentHashrate: Int,
@@ -32,13 +32,13 @@ data class TwoMinerRootDto(
     val pageSize: Int,
     @SerializedName("payments")
     @Expose
-    val payments: List<Payment>,
+    val payments: List<PaymentDto>,
     @SerializedName("paymentsTotal")
     @Expose
     val paymentsTotal: Int,
     @SerializedName("rewards")
     @Expose
-    val rewards: List<Reward>,
+    val rewards: List<RewardDto>,
     @SerializedName("roundShares")
     @Expose
     val roundShares: Int,
@@ -53,10 +53,10 @@ data class TwoMinerRootDto(
     val sharesValid: Int,
     @SerializedName("stats")
     @Expose
-    val stats: Stats,
+    val stats: StatsDto,
     @SerializedName("sumrewards")
     @Expose
-    val sumrewards: List<Sumreward>,
+    val sumrewards: List<SumRewardDto>,
     @SerializedName("updatedAt")
     @Expose
     val updatedAt: Long,

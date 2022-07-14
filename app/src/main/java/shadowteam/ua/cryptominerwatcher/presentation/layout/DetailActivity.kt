@@ -2,6 +2,8 @@ package shadowteam.ua.cryptominerwatcher.presentation.layout
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import shadowteam.ua.cryptominerwatcher.R
@@ -10,6 +12,8 @@ import shadowteam.ua.cryptominerwatcher.presentation.adapter.TopCoinAdapter
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.DetailViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.viewmodelfactory.ViewModelFactory
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
 import javax.inject.Inject
 
 class DetailActivity : AppCompatActivity() {
@@ -38,5 +42,9 @@ class DetailActivity : AppCompatActivity() {
         viewModel.coinListLiveData.observe(this){
             coinAdapter.submitList(it)
         }
+        binding.walletField.setEndIconOnClickListener {
+        }
+
     }
+
 }

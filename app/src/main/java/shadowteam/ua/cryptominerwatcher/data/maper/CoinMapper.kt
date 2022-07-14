@@ -5,7 +5,7 @@ import shadowteam.ua.cryptominerwatcher.data.database.CoinInfoDbModel
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.CoinInfo
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*

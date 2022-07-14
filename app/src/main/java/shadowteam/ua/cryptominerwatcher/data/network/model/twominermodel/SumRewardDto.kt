@@ -4,7 +4,7 @@ package shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 
-data class Sumreward(
+data class SumRewardDto(
     @SerializedName("inverval")
     @Expose
     val inverval: Int,

@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.domain.dataclass
+package shadowteam.ua.cryptominerwatcher.domain.dataclass.coin
 
 data class CoinInfo(
     val fromSymbol: String,

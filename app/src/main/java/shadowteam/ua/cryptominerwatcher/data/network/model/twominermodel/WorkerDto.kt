@@ -7,19 +7,19 @@ import com.google.gson.annotations.Expose
 data class WorkerDto(
     @SerializedName("hr")
     @Expose
-    val hr: Int,
+    val hrCurrent: Int,
     @SerializedName("hr2")
     @Expose
-    val hr2: Int,
+    val hrAvg: Int,
     @SerializedName("lastBeat")
     @Expose
-    val lastBeat: Int,
+    val lastBeat: Long,
     @SerializedName("offline")
     @Expose
     val offline: Boolean,
     @SerializedName("rhr")
     @Expose
-    val rhr: Int,
+    val hrMiner: Int,
     @SerializedName("sharesInvalid")
     @Expose
     val sharesInvalid: Int,
