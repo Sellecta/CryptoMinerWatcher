@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import shadowteam.ua.cryptominerwatcher.R
+import shadowteam.ua.cryptominerwatcher.TwoMinerFragment
 import shadowteam.ua.cryptominerwatcher.databinding.ActivityDetailBinding
 import shadowteam.ua.cryptominerwatcher.presentation.adapter.TopCoinAdapter
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
@@ -35,15 +36,19 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        component.inject(this)
-        binding.recyclerTopCoin.adapter = coinAdapter
-        binding.recyclerTopCoin.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerTopCoin.itemAnimator = null
-        viewModel.coinListLiveData.observe(this){
-            coinAdapter.submitList(it)
-        }
-        binding.walletField.setEndIconOnClickListener {
-        }
+        val fragment = TwoMinerFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_view, fragment)
+            .commit()
+//        component.inject(this)
+//        binding.recyclerTopCoin.adapter = coinAdapter
+//        binding.recyclerTopCoin.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+//        binding.recyclerTopCoin.itemAnimator = null
+//        viewModel.coinListLiveData.observe(this){
+//            coinAdapter.submitList(it)
+//        }
+//        binding.walletField.setEndIconOnClickListener {
+//        }
 
     }
 
