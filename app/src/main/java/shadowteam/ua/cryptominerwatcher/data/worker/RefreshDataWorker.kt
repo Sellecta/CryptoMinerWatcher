@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.work.*
 import kotlinx.coroutines.delay
-import shadowteam.ua.cryptominerwatcher.data.database.CryptoMinerDao
+import shadowteam.ua.cryptominerwatcher.data.database.dao.CoinDao
 import shadowteam.ua.cryptominerwatcher.data.maper.CoinMapper
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class RefreshDataWorker(
     appContext: Context,
     params: WorkerParameters,
-    private val cryptoMinerDao: CryptoMinerDao,
+    private val coinDao: CoinDao,
     private val coinMapper: CoinMapper,
     private val apiService: ApiService
 ) : CoroutineWorker(appContext,
@@ -27,7 +27,7 @@ class RefreshDataWorker(
                 val jsonContainer = apiService.getCoinFullInfo(fromSymbol = fSym)
                 val listCoinInfoDto = coinMapper.mapJsonCoinInfoToListCoinInfo(jsonContainer)
                 val dbModelList = listCoinInfoDto.map { coinMapper.mapDtoToDbModel(it) }
-                cryptoMinerDao.insertCoinInfoList(dbModelList)
+                coinDao.insertCoinInfoList(dbModelList)
                 delay(REFRESH_DATA_TIME)
             }catch (e: Exception){
                 Log.e("REFRESH_EXCEPTION", e.toString())
@@ -36,12 +36,12 @@ class RefreshDataWorker(
     }
 
     class Factory @Inject constructor(
-        private val cryptoMinerDao: CryptoMinerDao,
+        private val coinDao: CoinDao,
         private val coinMapper: CoinMapper,
         private val apiService: ApiService
     ) :ChildWorkerFactory{
         override fun create(appContext: Context, params: WorkerParameters): ListenableWorker {
-            return RefreshDataWorker(appContext, params, cryptoMinerDao, coinMapper, apiService)
+            return RefreshDataWorker(appContext, params, coinDao, coinMapper, apiService)
         }
 
     }

@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.data.database
+package shadowteam.ua.cryptominerwatcher.data.database.model.coin
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,13 +1,14 @@
-package shadowteam.ua.cryptominerwatcher.data.database
+package shadowteam.ua.cryptominerwatcher.data.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import shadowteam.ua.cryptominerwatcher.data.database.model.coin.CoinInfoDbModel
 
 @Dao
-interface CryptoMinerDao {
+interface CoinDao {
 
     @Query("SELECT * FROM coin_table")
     fun getAllCoins(): LiveData<List<CoinInfoDbModel>>

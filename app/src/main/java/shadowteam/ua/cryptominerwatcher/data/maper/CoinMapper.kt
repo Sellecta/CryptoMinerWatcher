@@ -1,7 +1,7 @@
 package shadowteam.ua.cryptominerwatcher.data.maper
 
 import com.google.gson.Gson
-import shadowteam.ua.cryptominerwatcher.data.database.CoinInfoDbModel
+import shadowteam.ua.cryptominerwatcher.data.database.model.coin.CoinInfoDbModel
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
