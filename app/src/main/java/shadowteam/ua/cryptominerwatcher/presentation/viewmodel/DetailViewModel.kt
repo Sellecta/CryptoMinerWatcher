@@ -9,13 +9,15 @@ import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.GetCoinDetailCoinUse
 import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.GetCoinListUseCase
 import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.LoadDataUseCase
 import shadowteam.ua.cryptominerwatcher.domain.usecase.twominer.LoadDataTwoMinerUseCase
+import shadowteam.ua.cryptominerwatcher.domain.usecase.twominer.SavePaymentCountUseCase
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
     private val getCoinDetailCoinUseCase: GetCoinDetailCoinUseCase,
     private val getCoinListUseCase: GetCoinListUseCase,
     private val loadDataUseCase: LoadDataUseCase,
-    private val loadDataTwoMinerUseCase: LoadDataTwoMinerUseCase
+    private val loadDataTwoMinerUseCase: LoadDataTwoMinerUseCase,
+    private val savePaymentCountUseCase: SavePaymentCountUseCase
 ) :ViewModel() {
 
     val coinListLiveData = getCoinListUseCase()

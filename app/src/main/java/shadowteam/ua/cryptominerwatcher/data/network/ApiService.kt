@@ -1,11 +1,14 @@
 package shadowteam.ua.cryptominerwatcher.data.network
 
+import androidx.lifecycle.LiveData
 import retrofit2.http.*
 import shadowteam.ua.cryptominerwatcher.data.maper.RaveOsMapper
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.raveosmodel.RaveOsDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.BodyCountPayment
 import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.TwoMinerAccDto
+import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.SaveRequest
 
 interface ApiService {
 
@@ -29,6 +32,11 @@ interface ApiService {
     @GET("https://oapi.raveos.com/v2/worker/list")
     suspend fun getRaveOsWorkersList(
         @HeaderMap headers: Map<String, String>): RaveOsDto
+
+    @POST("https://eth.2miners.com/api/accounts/{walletid}/settings")
+    suspend fun posSaveMinimumPay(
+        @Path(WALLET_PATH) wallet: String,
+        @Body requestBody: BodyCountPayment): SaveRequest
 
     companion object {
         private const val QUERY_PARAM_API_KEY = "api_key"
