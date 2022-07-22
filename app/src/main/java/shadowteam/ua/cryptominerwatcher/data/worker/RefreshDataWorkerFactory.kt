@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
+import shadowteam.ua.cryptominerwatcher.data.worker.coin.CoinDataWorker
+import shadowteam.ua.cryptominerwatcher.data.worker.twominer.TwoMinerDataWorker
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -18,8 +20,12 @@ class RefreshDataWorkerFactory @Inject constructor(
         workerParameters: WorkerParameters,
     ): ListenableWorker? {
         return when (workerClassName) {
-            RefreshDataWorker::class.qualifiedName -> {
-                val childWorkerFactory = workerProvides[RefreshDataWorker::class.java]?.get()
+            CoinDataWorker::class.qualifiedName -> {
+                val childWorkerFactory = workerProvides[CoinDataWorker::class.java]?.get()
+                return childWorkerFactory?.create(appContext, workerParameters)
+            }
+            TwoMinerDataWorker::class.qualifiedName->{
+                val childWorkerFactory = workerProvides[TwoMinerDataWorker::class.java]?.get()
                 return childWorkerFactory?.create(appContext, workerParameters)
             }
             else -> null

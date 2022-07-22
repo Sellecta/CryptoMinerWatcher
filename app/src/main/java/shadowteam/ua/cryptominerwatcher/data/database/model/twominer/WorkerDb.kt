@@ -9,6 +9,7 @@ data class WorkerDb (
     @PrimaryKey
     val id:Int,
     val wallet:String,
+    val name:String,
     val lastShare: Long,
     val hrCurrent: Int,
     val hrAvg: Int,

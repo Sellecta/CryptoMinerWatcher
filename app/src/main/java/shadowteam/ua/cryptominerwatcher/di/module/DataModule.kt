@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import shadowteam.ua.cryptominerwatcher.data.database.AppDatabase
 import shadowteam.ua.cryptominerwatcher.data.database.dao.CoinDao
+import shadowteam.ua.cryptominerwatcher.data.database.dao.TwoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.network.ApiFactory
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
 import shadowteam.ua.cryptominerwatcher.data.repository.CoinRepositoryImpl
@@ -35,8 +36,14 @@ interface DataModule {
 
         @Provides
         @AppScope
-        fun provideCryptoMinerDao(application: Application): CoinDao {
+        fun provideCoinDao(application: Application): CoinDao {
             return AppDatabase.getInstance(application).coinDao()
+        }
+
+        @Provides
+        @AppScope
+        fun provideTwoMinerDao(application: Application):TwoMinerDao{
+            return AppDatabase.getInstance(application).twoMinerDao()
         }
     }
 }

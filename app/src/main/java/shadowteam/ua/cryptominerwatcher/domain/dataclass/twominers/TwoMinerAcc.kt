@@ -2,6 +2,7 @@ package shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers
 
 data class TwoMinerAcc(
 
+    val wallet:String,
     val currentHashrate: Int,
     val hashrateAvg: Int,
     val reward24h: Int,

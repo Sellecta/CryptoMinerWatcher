@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.data.worker
+package shadowteam.ua.cryptominerwatcher.data.worker.coin
 
 import android.content.Context
 import android.util.Log
@@ -7,9 +7,10 @@ import kotlinx.coroutines.delay
 import shadowteam.ua.cryptominerwatcher.data.database.dao.CoinDao
 import shadowteam.ua.cryptominerwatcher.data.maper.CoinMapper
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
+import shadowteam.ua.cryptominerwatcher.data.worker.ChildWorkerFactory
 import javax.inject.Inject
 
-class RefreshDataWorker(
+class CoinDataWorker(
     appContext: Context,
     params: WorkerParameters,
     private val coinDao: CoinDao,
@@ -22,6 +23,7 @@ class RefreshDataWorker(
     override suspend fun doWork(): Result {
         while (true){
             try {
+                Log.i("REFRESH_EXCEPTION", "test1")
                 val topCoins = apiService.getTopCoinsList()
                 val fSym = coinMapper.mapNamesListToString(topCoins)
                 val jsonContainer = apiService.getCoinFullInfo(fromSymbol = fSym)
@@ -39,9 +41,9 @@ class RefreshDataWorker(
         private val coinDao: CoinDao,
         private val coinMapper: CoinMapper,
         private val apiService: ApiService
-    ) :ChildWorkerFactory{
+    ) : ChildWorkerFactory {
         override fun create(appContext: Context, params: WorkerParameters): ListenableWorker {
-            return RefreshDataWorker(appContext, params, coinDao, coinMapper, apiService)
+            return CoinDataWorker(appContext, params, coinDao, coinMapper, apiService)
         }
 
     }
@@ -51,7 +53,7 @@ class RefreshDataWorker(
         const val NAME_WORKER = "RefreshDataWorker"
 
         fun makeRequest(): OneTimeWorkRequest{
-            return OneTimeWorkRequestBuilder<RefreshDataWorker>()
+            return OneTimeWorkRequestBuilder<CoinDataWorker>()
                 .build()
         }
     }

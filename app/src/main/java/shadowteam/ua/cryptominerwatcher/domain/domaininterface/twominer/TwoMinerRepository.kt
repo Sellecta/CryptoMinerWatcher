@@ -16,6 +16,6 @@ interface TwoMinerRepository {
 
     fun getTwoMinerPayment(): LiveData<List<Payment>>
 
-    fun getTwoMinerWorker(): LiveData<Map<String, Worker>>
+    fun getTwoMinerWorker(): LiveData<List<Worker>>
 
 }

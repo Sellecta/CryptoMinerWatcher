@@ -2,7 +2,6 @@ package shadowteam.ua.cryptominerwatcher.presentation.application
 
 import android.app.Application
 import androidx.work.Configuration
-import shadowteam.ua.cryptominerwatcher.data.worker.RefreshDataWorker
 import shadowteam.ua.cryptominerwatcher.data.worker.RefreshDataWorkerFactory
 import shadowteam.ua.cryptominerwatcher.di.DaggerApplicationComponent
 import javax.inject.Inject

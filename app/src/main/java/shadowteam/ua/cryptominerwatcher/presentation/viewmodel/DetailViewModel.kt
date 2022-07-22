@@ -8,12 +8,14 @@ import shadowteam.ua.cryptominerwatcher.data.network.ApiService
 import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.GetCoinDetailCoinUseCase
 import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.GetCoinListUseCase
 import shadowteam.ua.cryptominerwatcher.domain.usecase.coin.LoadDataUseCase
+import shadowteam.ua.cryptominerwatcher.domain.usecase.twominer.LoadDataTwoMinerUseCase
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
     private val getCoinDetailCoinUseCase: GetCoinDetailCoinUseCase,
     private val getCoinListUseCase: GetCoinListUseCase,
     private val loadDataUseCase: LoadDataUseCase,
+    private val loadDataTwoMinerUseCase: LoadDataTwoMinerUseCase
 ) :ViewModel() {
 
     val coinListLiveData = getCoinListUseCase()
@@ -24,6 +26,7 @@ class DetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             loadDataUseCase()
+            loadDataTwoMinerUseCase()
         }
     }
 }

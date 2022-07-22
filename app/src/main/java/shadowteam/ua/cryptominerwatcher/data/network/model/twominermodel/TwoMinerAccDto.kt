@@ -5,7 +5,7 @@ import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 
-data class TwoMinerRootDto(
+data class TwoMinerAccDto(
     @SerializedName("apiVersion")
     @Expose
     val apiVersion: Int,

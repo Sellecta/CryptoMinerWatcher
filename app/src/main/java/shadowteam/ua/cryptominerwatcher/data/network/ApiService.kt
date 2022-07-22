@@ -1,32 +1,30 @@
 package shadowteam.ua.cryptominerwatcher.data.network
 
-import android.util.Log
 import retrofit2.http.*
 import shadowteam.ua.cryptominerwatcher.data.maper.RaveOsMapper
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinInfoJsonObjectDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.coinmodel.CoinListNameDto
 import shadowteam.ua.cryptominerwatcher.data.network.model.raveosmodel.RaveOsDto
-import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.TwoMinerRootDto
-import java.security.Signature
+import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.TwoMinerAccDto
 
 interface ApiService {
 
     @GET("top/totalvolfull")
     suspend fun getTopCoinsList(
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = "bcaae2a6010b49df00dcb2e7a96418263f8708289f35721b4d7a9fa288ffec21",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) toSymbol: String = CURRENCY
     ): CoinListNameDto
 
     @GET("pricemultifull")
     suspend fun getCoinFullInfo(
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = "bcaae2a6010b49df00dcb2e7a96418263f8708289f35721b4d7a9fa288ffec21",
         @Query(QUERY_PARAM_FROM_SYMBOLS) fromSymbol: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) toSymbol: String = CURRENCY
     ): CoinInfoJsonObjectDto
 
     @GET("https://eth.2miners.com/api/accounts/{walletid}")
-    suspend fun getTwoMinersAccount(@Path(WALLET_PATH) wallet:String): TwoMinerRootDto
+    suspend fun getTwoMinersAccount(@Path(WALLET_PATH) wallet:String): TwoMinerAccDto
 
     @GET("https://oapi.raveos.com/v2/worker/list")
     suspend fun getRaveOsWorkersList(
