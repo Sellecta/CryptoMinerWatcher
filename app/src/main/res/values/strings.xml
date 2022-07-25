@@ -5,4 +5,19 @@
     <string name="hint_wallet">Wallet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="workers_card_title">Workers</string>
+    <string name="online_card_title">Online</string>
+    <string name="eth_card_title">ETH</string>
+    <string name="day_profit_card_title">Your estimated daily profit</string>
+    <string name="hashrate_card_title">Hashrate</string>
+    <string name="current_card_title">Current</string>
+    <string name="mh_s_card_title">MH/s</string>
+    <string name="average_card_title">Average</string>
+    <string name="last_24_hours_card_title">Last 24 Hours</string>
+    <string name="reward_card_title">Reward</string>
+    <string name="total_card_title">Total</string>
+    <string name="paid_card_title">Paid</string>
+    <string name="unpaid_card_title">Unpaid</string>
+    <string name="balance_card_title">Balance</string>
+    <string name="unconfirmed_card_title">Unconfirmed</string>
 </resources>

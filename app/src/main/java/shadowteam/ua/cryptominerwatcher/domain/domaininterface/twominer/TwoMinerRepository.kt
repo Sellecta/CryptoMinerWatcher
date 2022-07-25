@@ -11,7 +11,7 @@ interface TwoMinerRepository {
 
     fun loadData()
 
-    fun getTwoMinerAcc(): LiveData<TwoMinerAcc>
+    fun getTwoMinerAcc(): TwoMinerAcc
 
     fun getTwoMinerConfig(): LiveData<ConfigAcc>
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WorkerFragment"
+    tools:ignore="SpeakableTextPresentCheck">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewPeriodLableName"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Worker"
+            android:background="@color/bac_table"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewLabelPeriodEth"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Current Hashrate"
+            android:background="@color/bac_table"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewPeriodLableName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitlePEriodBtc"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Average Hashrate"
+            android:background="@color/bac_table"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewLabelPeriodEth"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitlePeriodUsd"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Reported Hashrate"
+            android:background="@color/bac_table"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewTitlePEriodBtc"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitleLastHash"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Last Share"
+            android:background="@color/bac_table"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewTitlePeriodUsd"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeriodLableName"
+            tools:itemCount="2"
+            tools:listitem="@layout/worker_item"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</HorizontalScrollView>

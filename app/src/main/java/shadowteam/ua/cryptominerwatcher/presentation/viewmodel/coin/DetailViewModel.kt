@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.presentation.viewmodel
+package shadowteam.ua.cryptominerwatcher.presentation.viewmodel.coin
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

@@ -8,16 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONObject
-import retrofit2.HttpException
-import shadowteam.ua.cryptominerwatcher.data.network.ApiFactory
-import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.BodyCountPayment
+import shadowteam.ua.cryptominerwatcher.R
+import shadowteam.ua.cryptominerwatcher.data.maper.TwoMinerMapper
 import shadowteam.ua.cryptominerwatcher.databinding.ActivityDetailBinding
 import shadowteam.ua.cryptominerwatcher.presentation.adapter.TopCoinAdapter
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
-import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.DetailViewModel
+import shadowteam.ua.cryptominerwatcher.presentation.fragment.TwoMinerFragment
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.coin.DetailViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.viewmodelfactory.ViewModelFactory
 import javax.inject.Inject
 
@@ -53,8 +50,15 @@ class DetailActivity : AppCompatActivity() {
             coinAdapter.submitList(it)
         }
 
+        CoroutineScope(Dispatchers.Main).launch {
+
+        }
+
         binding.walletField.setEndIconOnClickListener {
-            viewModel.saveButton("188.163.19.571","bc1q99ymugekddfemgaw4nzptv45xdvz7k797d3qpc")
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainerMiners, TwoMinerFragment.newInstance())
+                .commit()
         }
     }
 }

@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text_silver">#757575</color>
     <color name="progress_silver">#919191</color>
-    <color name="progress_orange">#F35E31</color>
+    <color name="progress_orange">#FB5D08</color>
+    <color name="bac_table">#D5D5D5</color>
 </resources>

@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import retrofit2.HttpException
+import shadowteam.ua.cryptominerwatcher.data.database.dao.CoinDao
 import shadowteam.ua.cryptominerwatcher.data.database.dao.TwoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.maper.TwoMinerMapper
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
@@ -26,7 +27,8 @@ class TwoMinerRepositoryImpl @Inject constructor(
     private val twoMinerDao: TwoMinerDao,
     private val twoMinerMapper: TwoMinerMapper,
     private val application: Application,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val coinDao: CoinDao
 ): TwoMinerRepository {
 
     override fun loadData() {
@@ -38,10 +40,11 @@ class TwoMinerRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun getTwoMinerAcc(): LiveData<TwoMinerAcc> {
-        return Transformations.map(twoMinerDao.getAllTwoMinerDbAcc()){
-            twoMinerMapper.mapTwoMinerAccDbToEntity(it)
-        }
+    override fun getTwoMinerAcc(): TwoMinerAcc{
+//        return Transformations.map(twoMinerDao.getAllTwoMinerDbAcc()){
+//            twoMinerMapper.mapTwoMinerAccDbToEntity(it)
+        return  twoMinerMapper.mapTwoMinerAccDbToEntity( twoMinerDao.getAllTwoMinerDbAcc())
+     //   }
     }
 
     override fun getTwoMinerConfig(): LiveData<ConfigAcc> {
@@ -80,5 +83,9 @@ class TwoMinerRepositoryImpl @Inject constructor(
                 value = SaveRequest(e.code(),null)
             }
         }
+    }
+    companion object{
+
+        private const val ETH = "ETH"
     }
 }

@@ -18,4 +18,7 @@ interface CoinDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCoinInfoList(coinInfo: List<CoinInfoDbModel>)
+
+    @Query("SELECT Price FROM coin_table WHERE fromSymbol == :coin")
+    fun getPriceCoinUSD(coin: String):String
 }

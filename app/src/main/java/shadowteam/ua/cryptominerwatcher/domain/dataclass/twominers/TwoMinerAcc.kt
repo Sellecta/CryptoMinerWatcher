@@ -3,10 +3,10 @@ package shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers
 data class TwoMinerAcc(
 
     val wallet:String,
-    val currentHashrate: Int,
-    val hashrateAvg: Int,
-    val reward24h: Int,
-    val paymentsTotal: Int,
+    val currentHashrate: Double,
+    val hashrateAvg: Double,
+    val reward24h: Double,
+    val paymentsTotal: Double,
     val sharesInvalid: Int,
     val sharesStale: Int,
     val sharesValid: Int,

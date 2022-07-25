@@ -14,7 +14,7 @@ interface TwoMinerDao {
     fun getAllWorkers():LiveData<List<WorkerDb>>
 
     @Query("SELECT * FROM twominer_acc")
-    fun getAllTwoMinerDbAcc():LiveData<TwoMinerAccDb>
+     fun getAllTwoMinerDbAcc():TwoMinerAccDb
 
     @Query("SELECT * FROM twominer_acc_config")
     fun getConfigAccDb():LiveData<ConfigAccDb>

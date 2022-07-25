@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/textViewPeriodTime"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Total"
+        android:textSize="16sp"
+        android:background="@color/bac_table"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRewardEth"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="339.36 MH/s"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="@color/bac_table"
+        app:layout_constraintStart_toEndOf="@+id/textViewPeriodTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRewardBtc"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="363.60 MH/s"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="@color/bac_table"
+        app:layout_constraintStart_toEndOf="@+id/textViewRewardEth"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRewardUsd"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="365.43 MH/s"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="@color/bac_table"
+        app:layout_constraintStart_toEndOf="@+id/textViewRewardBtc"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewWorkerShare"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="5 minutes ago"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="@color/bac_table"
+        app:layout_constraintStart_toEndOf="@+id/textViewRewardUsd"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
