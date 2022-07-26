@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.presentation.adapter
+package shadowteam.ua.cryptominerwatcher.presentation.adapter.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.coin.CoinInfo

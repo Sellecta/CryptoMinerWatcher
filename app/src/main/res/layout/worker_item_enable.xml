@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textViewPeriodTime"
+        android:id="@+id/textViewWorker"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,36 +18,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRewardEth"
+        android:id="@+id/textViewCurrentHash"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="339.36 MH/s"
         android:gravity="center"
         android:textSize="16sp"
         android:background="@color/bac_table"
-        app:layout_constraintStart_toEndOf="@+id/textViewPeriodTime"
+        app:layout_constraintStart_toEndOf="@+id/textViewWorker"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRewardBtc"
+        android:id="@+id/textViewAvgeHash"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="363.60 MH/s"
         android:gravity="center"
         android:textSize="16sp"
         android:background="@color/bac_table"
-        app:layout_constraintStart_toEndOf="@+id/textViewRewardEth"
+        app:layout_constraintStart_toEndOf="@+id/textViewCurrentHash"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRewardUsd"
+        android:id="@+id/textViewMinerHash"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="365.43 MH/s"
         android:gravity="center"
         android:textSize="16sp"
         android:background="@color/bac_table"
-        app:layout_constraintStart_toEndOf="@+id/textViewRewardBtc"
+        app:layout_constraintStart_toEndOf="@+id/textViewAvgeHash"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -58,7 +58,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:background="@color/bac_table"
-        app:layout_constraintStart_toEndOf="@+id/textViewRewardUsd"
+        app:layout_constraintStart_toEndOf="@+id/textViewMinerHash"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

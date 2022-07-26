@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import shadowteam.ua.cryptominerwatcher.R
 import shadowteam.ua.cryptominerwatcher.databinding.FragmentTwominerBinding
@@ -59,6 +60,35 @@ class TwoMinerFragment : Fragment() {
         viewModel.twoMinerAccLiveData.observe(viewLifecycleOwner){
             fillTextView(it)
         }
+
+        bottomNavigationInit()
+    }
+
+    private fun bottomNavigationInit(){
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.page_workers ->{
+                    requireActivity().supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainerAddons, WorkerFragment.newInstance())
+                        .commit()
+                    true
+                }
+                R.id.page_payouts ->{
+                    Toast.makeText(requireContext(),"Payouts", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.page_reward ->{
+                    Toast.makeText(requireContext(),"Reward", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.page_settings ->{
+                    Toast.makeText(requireContext(),"Settings", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun fillTextView(acc:TwoMinerAcc){
@@ -83,6 +113,7 @@ class TwoMinerFragment : Fragment() {
         }
 
     }
+
     companion object {
 
         private const val WALLET = "wallet"

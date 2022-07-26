@@ -6,12 +6,12 @@ import com.google.gson.annotations.Expose
 
 data class WorkerDto(
 
-    val hr: Int,
-    val hr2: Int,
-    val lastBeat: Long,
-    val offline: Boolean,
-    val rhr: Int,
-    val sharesInvalid: Int,
-    val sharesStale: Int,
-    val sharesValid: Int
+    var hr: Int,
+    var hr2: Int,
+    var lastBeat: Long,
+    var offline: Boolean,
+    var rhr: Int,
+    var sharesInvalid: Int,
+    var sharesStale: Int,
+    var sharesValid: Int
 )

@@ -1,8 +1,10 @@
 package shadowteam.ua.cryptominerwatcher.data.maper
 
+import android.app.Application
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import shadowteam.ua.cryptominerwatcher.R
 import shadowteam.ua.cryptominerwatcher.data.database.model.twominer.*
 import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.*
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.*
@@ -10,7 +12,9 @@ import java.math.BigDecimal
 import java.math.MathContext
 import javax.inject.Inject
 
-class TwoMinerMapper @Inject constructor() {
+class TwoMinerMapper @Inject constructor(
+    private val application: Application
+) {
 
     fun mapTwoMinerAccDtoToTwoMinerAccDb(
         twoMinerAcc: TwoMinerAccDto,
@@ -59,13 +63,38 @@ class TwoMinerMapper @Inject constructor() {
 
     fun mapJsonObjectWorkerToWorkerDb(workers: JsonObject, wallet: String): List<WorkerDb> {
         val result = mutableListOf<WorkerDb>()
+        var workerTotal = WorkerDto(
+            0,
+            0,
+            0,
+            false,
+            0,
+            0,
+            0,
+            0
+        )
         val workerKeySet = workers.keySet()
         for ((numWorker, workerKey) in workerKeySet.withIndex()) {
             val currentJson = workers.getAsJsonObject(workerKey)
             val worker = Gson().fromJson(currentJson, WorkerDto::class.java)
-            result.add(mapWorkerDtoToWorkerDb(worker, numWorker, wallet, workerKey))
+            workerTotal = createTotalWorkerDto(workerTotal, worker)
+            result.add(mapWorkerDtoToWorkerDb(worker, numWorker+1, wallet, workerKey))
         }
+        result.add(mapWorkerDtoToWorkerDb(workerTotal, 0, wallet, "Total"))
         return result
+    }
+
+    private fun createTotalWorkerDto(workerDtoTotal: WorkerDto, workerDto: WorkerDto):WorkerDto{
+        return workerDtoTotal.apply {
+            hr += workerDto.hr
+            hr2 += workerDto.hr2
+            if(lastBeat< workerDto.lastBeat) lastBeat = workerDto.lastBeat
+            offline = false
+            rhr += workerDto.rhr
+            sharesValid += workerDto.sharesValid
+            sharesStale += workerDto.sharesStale
+            sharesValid += workerDto.sharesInvalid
+        }
     }
 
     private fun mapWorkerDtoToWorkerDb(
@@ -79,9 +108,9 @@ class TwoMinerMapper @Inject constructor() {
             wallet = wallet,
             name = nameWorker,
             lastShare = workerDto.lastBeat,
-            hrCurrent = workerDto.hr,
-            hrAvg = workerDto.hr2,
-            hrMiner = workerDto.rhr,
+            hrCurrent = mapDataForBigDecimal(workerDto.hr, NUM_DIVINER_HASH,4 ).toDouble(),
+            hrAvg = mapDataForBigDecimal(workerDto.hr2, NUM_DIVINER_HASH, 4).toDouble(),
+            hrMiner = mapDataForBigDecimal(workerDto.rhr, NUM_DIVINER_HASH, 4).toDouble(),
             offline = workerDto.offline,
             sharesValid = workerDto.sharesValid,
             sharesInvalid = workerDto.sharesInvalid,
@@ -112,7 +141,7 @@ class TwoMinerMapper @Inject constructor() {
             hrAvg = worker.hrAvg,
             hrCurrent = worker.hrCurrent,
             hrMiner = worker.hrMiner,
-            lastShare = worker.lastShare,
+            lastShare = formatTime(worker.lastShare),
             offline = worker.offline,
             sharesStale = worker.sharesStale,
             sharesInvalid = worker.sharesInvalid,
@@ -175,6 +204,15 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
+    private fun formatTime(millisUntilFinished: Long): String {
+        val seconds = (System.currentTimeMillis() / 1000) - millisUntilFinished
+        val minutes = seconds / 60
+        val minutesTitle = application.getString(R.string.minutes_title)
+        val secondsTitle = application.getString(R.string.seconds_title)
+        return if (minutes > 0) String.format(minutesTitle, minutes)
+        else String.format(secondsTitle, seconds)
+    }
+
     private fun mapDataForBigDecimal(inputData: Int, diviner: Double, roundCount: Int): BigDecimal {
         val res = inputData / diviner
         return BigDecimal(res).round(MathContext(roundCount))
@@ -230,6 +268,8 @@ class TwoMinerMapper @Inject constructor() {
     companion object {
         private const val NUM_DIVINER_PAY = 1_000_000_000.0
         private const val NUM_DIVINER_HASH = 1_000_000.0
+        private const val MILLIS_IN_SECOND = 60
+        private const val MINUTES_IN_SECOND = 60
     }
 
 

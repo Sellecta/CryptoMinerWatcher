@@ -5,13 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import shadowteam.ua.cryptominerwatcher.R
-import shadowteam.ua.cryptominerwatcher.data.maper.TwoMinerMapper
 import shadowteam.ua.cryptominerwatcher.databinding.ActivityDetailBinding
-import shadowteam.ua.cryptominerwatcher.presentation.adapter.TopCoinAdapter
+import shadowteam.ua.cryptominerwatcher.presentation.adapter.coin.TopCoinAdapter
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
 import shadowteam.ua.cryptominerwatcher.presentation.fragment.TwoMinerFragment
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.coin.DetailViewModel
@@ -49,6 +45,8 @@ class DetailActivity : AppCompatActivity() {
         viewModel.coinListLiveData.observe(this) {
             coinAdapter.submitList(it)
         }
+        val time = (System.currentTimeMillis()/1000) - 1659175864
+        Log.i("test1", time.toString())
         binding.walletField.setEndIconOnClickListener {
             supportFragmentManager
                 .beginTransaction()

@@ -1,4 +1,4 @@
-package shadowteam.ua.cryptominerwatcher.presentation.adapter
+package shadowteam.ua.cryptominerwatcher.presentation.adapter.coin
 
 import androidx.recyclerview.widget.RecyclerView
 import shadowteam.ua.cryptominerwatcher.databinding.CardItemCoinBinding

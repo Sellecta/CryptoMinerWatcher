@@ -7,6 +7,7 @@ import dagger.multibindings.IntoMap
 import shadowteam.ua.cryptominerwatcher.di.annotation.ViewModelKey
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.coin.DetailViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.TwoMinerViewModel
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.WorkersViewModel
 
 @Module
 interface ViewModelModule {
@@ -20,4 +21,9 @@ interface ViewModelModule {
     @ViewModelKey(TwoMinerViewModel::class)
     @Binds
     fun bindsTwoMinerViewModel(impl: TwoMinerViewModel):ViewModel
+
+    @IntoMap
+    @ViewModelKey(WorkersViewModel::class)
+    @Binds
+    fun bindsWorkersViewModel(impl: WorkersViewModel):ViewModel
 }

@@ -6,7 +6,7 @@
     <string name="price_usd_title">$%.2f</string>
     <string name="percent_progress">%s %%</string>
     <string name="offline_workers_title">/ %s</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hash_title">%S Mh/s</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="workers_card_title">Workers</string>
     <string name="online_card_title">Online</string>
@@ -23,4 +23,6 @@
     <string name="unpaid_card_title">Unpaid</string>
     <string name="balance_card_title">Balance</string>
     <string name="unconfirmed_card_title">Unconfirmed</string>
+    <string name="minutes_title">%s Minutes ago</string>
+    <string name="seconds_title">%s Seconds ago</string>
 </resources>

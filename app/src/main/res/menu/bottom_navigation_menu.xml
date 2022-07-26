@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_workers"
+        android:enabled="true"
+        android:icon="@drawable/worker"
+        android:title="workers"/>
+    <item
+
+        android:id="@+id/page_reward"
+        android:enabled="true"
+        android:icon="@drawable/reward"
+        android:title="Reward"/>
+    <item
+        android:id="@+id/page_payouts"
+        android:enabled="true"
+        android:icon="@drawable/wallet"
+        android:title="Payouts"/>
+    <item
+        android:id="@+id/page_settings"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="Account Settings"/>
+</menu>
