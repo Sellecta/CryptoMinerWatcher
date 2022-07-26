@@ -13,10 +13,7 @@ import shadowteam.ua.cryptominerwatcher.data.network.ApiService
 import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.BodyCountPayment
 import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.SaveRequest
 import shadowteam.ua.cryptominerwatcher.data.worker.twominer.TwoMinerDataWorker
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.ConfigAcc
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.Payment
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.TwoMinerAcc
-import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.Worker
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.*
 import shadowteam.ua.cryptominerwatcher.domain.domaininterface.twominer.TwoMinerRepository
 import shadowteam.ua.cryptominerwatcher.domain.usecase.twominer.GetTwoMinerAccUseCase
 import javax.inject.Inject
@@ -26,7 +23,7 @@ class TwoMinerRepositoryImpl @Inject constructor(
     private val twoMinerMapper: TwoMinerMapper,
     private val application: Application,
     private val apiService: ApiService,
-    private val coinDao: CoinDao
+    private val coinDao: CoinDao,
 ): TwoMinerRepository {
 
     override fun loadData() {
@@ -68,6 +65,14 @@ class TwoMinerRepositoryImpl @Inject constructor(
         return Transformations.map(twoMinerDao.getAllWorkers()){ listWorker ->
             listWorker.map {
                 twoMinerMapper.mapWorkerDbToEntity(it)
+            }
+        }
+    }
+
+    override fun getTwoMinerSumReward(): LiveData<List<SumReward>> {
+        return Transformations.map(twoMinerDao.getAllSumReward()){ list ->
+            list.map {
+                twoMinerMapper.mapSumRewardDbToEntity(it)
             }
         }
     }

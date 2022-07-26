@@ -2,6 +2,7 @@ package shadowteam.ua.cryptominerwatcher.data.database.model.twominer
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.math.BigDecimal
 
 @Entity(tableName = "twominer_sumreward")
 data class SumRewardDb(
@@ -12,5 +13,7 @@ data class SumRewardDb(
     val name: String,
     val numReward: Int,
     val offset: Int,
-    val reward: Int
+    val reward: Double,
+    val rewardUSD: Double,
+    val rewardBTC: Double
 )

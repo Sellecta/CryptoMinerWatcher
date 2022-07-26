@@ -9,6 +9,7 @@ import shadowteam.ua.cryptominerwatcher.di.module.DataModule
 import shadowteam.ua.cryptominerwatcher.di.module.ViewModelModule
 import shadowteam.ua.cryptominerwatcher.di.module.WorkerModule
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
+import shadowteam.ua.cryptominerwatcher.presentation.fragment.RewardFragment
 import shadowteam.ua.cryptominerwatcher.presentation.fragment.TwoMinerFragment
 import shadowteam.ua.cryptominerwatcher.presentation.fragment.WorkerFragment
 import shadowteam.ua.cryptominerwatcher.presentation.layout.DetailActivity
@@ -24,6 +25,8 @@ interface ApplicationComponent  {
     fun inject(twiMinerFragment: TwoMinerFragment)
 
     fun inject(workerFragment: WorkerFragment)
+
+    fun inject(rewardFragment: RewardFragment)
 
     @Component.Factory
     interface ApplicationComponentFactory{

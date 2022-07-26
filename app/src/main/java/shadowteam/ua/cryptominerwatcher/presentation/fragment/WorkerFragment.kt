@@ -38,9 +38,6 @@ class WorkerFragment : Fragment() {
     private val binding: FragmentWorkerBinding
     get() = _binding ?: throw Exception("WorkersFragment == null")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

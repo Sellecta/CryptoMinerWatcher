@@ -1,12 +1,13 @@
 package shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers
 
+import java.math.BigDecimal
 
 
 data class SumReward(
 
     val interval: Int,
     val name: String,
-    val numReward: Int,
-    val offset: Int,
-    val reward: Int
+    val rewardETH: BigDecimal,
+    val rewardUSD: Double,
+    val rewardBTC: BigDecimal
 )

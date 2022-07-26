@@ -1,60 +1,65 @@
 package shadowteam.ua.cryptominerwatcher.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import shadowteam.ua.cryptominerwatcher.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import shadowteam.ua.cryptominerwatcher.databinding.FragmentSumRewardBinding
+import shadowteam.ua.cryptominerwatcher.presentation.adapter.twominer.SumRewardsAdapter
+import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.SumRewardViewModel
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.viewmodelfactory.ViewModelFactory
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RewardFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RewardFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val component by lazy {
+        (requireActivity().application as CryptoMinerApplication)
+            .component
     }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[SumRewardViewModel::class.java]
+    }
+    @Inject
+    lateinit var sumRewardsAdapter: SumRewardsAdapter
+
+    private var _binding: FragmentSumRewardBinding? = null
+    private val binding: FragmentSumRewardBinding
+    get() = _binding ?: throw Exception("SumRewardFragment = null")
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reward, container, false)
+    ): View {
+        _binding = FragmentSumRewardBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        component.inject(this)
+        binding.recyclerSumReward.adapter = sumRewardsAdapter
+        binding.recyclerSumReward.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        binding.recyclerSumReward.itemAnimator = null
+        viewModel.liveSumReward.observe(viewLifecycleOwner){
+            sumRewardsAdapter.submitList(it)
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RewardFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RewardFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = RewardFragment()
     }
 }

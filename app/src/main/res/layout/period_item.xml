@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textViewWorker"
+        android:id="@+id/textViewTitleTime"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -17,33 +17,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewCurrentHash"
+        android:id="@+id/textViewTitleEthCount"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="0.000238"
         android:gravity="center"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewWorker"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitleTime"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewAvgeHash"
+        android:id="@+id/textViewTitleBtcCount"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="0.00001585"
         android:gravity="center"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewCurrentHash"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitleEthCount"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewMinerHash"
+        android:id="@+id/textViewTitleUsdCount"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="0.35"
         android:gravity="center"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewAvgeHash"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitleBtcCount"
         app:layout_constraintTop_toTopOf="parent" />
     <View
         android:id="@+id/viewCardTwoHorizontal"

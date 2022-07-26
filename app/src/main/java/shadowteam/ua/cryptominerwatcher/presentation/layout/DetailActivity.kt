@@ -45,8 +45,6 @@ class DetailActivity : AppCompatActivity() {
         viewModel.coinListLiveData.observe(this) {
             coinAdapter.submitList(it)
         }
-        val time = (System.currentTimeMillis()/1000) - 1659175864
-        Log.i("test1", time.toString())
         binding.walletField.setEndIconOnClickListener {
             supportFragmentManager
                 .beginTransaction()

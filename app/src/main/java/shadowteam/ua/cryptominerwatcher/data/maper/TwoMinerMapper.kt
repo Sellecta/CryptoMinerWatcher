@@ -1,7 +1,6 @@
 package shadowteam.ua.cryptominerwatcher.data.maper
 
 import android.app.Application
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import shadowteam.ua.cryptominerwatcher.R
@@ -192,6 +191,8 @@ class TwoMinerMapper @Inject constructor(
         sumReward: SumRewardDto,
         wallet: String,
         id: Int,
+        priceETH: String,
+        priceBTC: String,
     ): SumRewardDb {
         return SumRewardDb(
             id = id,
@@ -200,7 +201,9 @@ class TwoMinerMapper @Inject constructor(
             name = sumReward.name,
             numReward = sumReward.numreward,
             offset = sumReward.offset,
-            reward = sumReward.reward
+            reward = mapDataForBigDecimal(sumReward.reward, NUM_DIVINER_PAY, 4).toDouble(),
+            rewardUSD = calculateUSD(sumReward.reward,priceETH),
+            rewardBTC = (calculateUSD(sumReward.reward,priceETH) / priceBTC.toDouble())
         )
     }
 
@@ -256,20 +259,30 @@ class TwoMinerMapper @Inject constructor(
     fun mapListSumRewardDToListSumRewardDb(
         sumRewards: List<SumRewardDto>,
         walletTwoMiner: String,
+        priceETH: String,
+        priceBTC: String,
     ): List<SumRewardDb> {
         val result = mutableListOf<SumRewardDb>()
         for ((numSumReward, sumReward) in sumRewards.withIndex()) {
-            val sumRewardDb = mapSumRewardDtoToSumRewardDb(sumReward, walletTwoMiner, numSumReward)
+            val sumRewardDb = mapSumRewardDtoToSumRewardDb(sumReward, walletTwoMiner, numSumReward, priceETH, priceBTC)
             result.add(sumRewardDb)
         }
         return result
     }
 
+    fun mapSumRewardDbToEntity(sumReward: SumRewardDb):SumReward{
+        return SumReward(
+            interval = sumReward.interval,
+            name = sumReward.name,
+            rewardETH = BigDecimal(sumReward.reward).round(MathContext(4)),
+            rewardUSD = sumReward.rewardUSD,
+            rewardBTC = BigDecimal(sumReward.rewardBTC).round(MathContext(4))
+        )
+    }
+
     companion object {
         private const val NUM_DIVINER_PAY = 1_000_000_000.0
         private const val NUM_DIVINER_HASH = 1_000_000.0
-        private const val MILLIS_IN_SECOND = 60
-        private const val MINUTES_IN_SECOND = 60
     }
 
 

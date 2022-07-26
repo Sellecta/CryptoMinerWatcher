@@ -23,7 +23,7 @@ interface TwoMinerDao {
     fun getPaymentDb():LiveData<List<PaymentDb>>
 
     @Query("SELECT * FROM twominer_sumreward")
-    fun getAllSumReward():List<SumRewardDb>
+    fun getAllSumReward():LiveData<List<SumRewardDb>>
 
     @Query("SELECT allowedMinPayout FROM twominer_acc_config")
     suspend fun getMinAllowedPay():Int

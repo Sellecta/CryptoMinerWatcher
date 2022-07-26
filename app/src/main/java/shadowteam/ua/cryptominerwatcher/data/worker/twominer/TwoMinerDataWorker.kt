@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.work.*
 import kotlinx.coroutines.delay
+import shadowteam.ua.cryptominerwatcher.data.database.dao.CoinDao
 import shadowteam.ua.cryptominerwatcher.data.database.dao.TwoMinerDao
 import shadowteam.ua.cryptominerwatcher.data.maper.TwoMinerMapper
 import shadowteam.ua.cryptominerwatcher.data.network.ApiService
@@ -16,11 +17,15 @@ class TwoMinerDataWorker(
     private val apiService: ApiService,
     private val twoMinerMapper: TwoMinerMapper,
     private val twoMinerDao: TwoMinerDao,
+    private val coinDao: CoinDao
 ) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
         try {
             while (true) {
+                val priceETH = coinDao.getPriceCoinUSD("ETH")
+                val priceBTC = coinDao.getPriceCoinUSD("BTC")
+                Log.i("test", "price $priceETH, price BTC $priceBTC")
                 val wallet = params.inputData.getString(WALLET)?.let { walletTwoMiner ->
                     val twoMinerAccDto = apiService.getTwoMinersAccount(walletTwoMiner)
                     val twoMinerAccDb = twoMinerMapper.mapTwoMinerAccDtoToTwoMinerAccDb(
@@ -34,7 +39,7 @@ class TwoMinerDataWorker(
                         walletTwoMiner)
                     val listSumRewardDb = twoMinerMapper.mapListSumRewardDToListSumRewardDb(
                         twoMinerAccDto.sumrewards,
-                        walletTwoMiner)
+                        walletTwoMiner, priceETH, priceBTC)
                     val listWorkerDb =
                         twoMinerMapper.mapJsonObjectWorkerToWorkerDb(twoMinerAccDto.workers,
                             walletTwoMiner)
@@ -57,9 +62,10 @@ class TwoMinerDataWorker(
         private val apiService: ApiService,
         private val twoMinerMapper: TwoMinerMapper,
         private val twoMinerDao: TwoMinerDao,
+        private val coinDao: CoinDao
     ) : ChildWorkerFactory {
         override fun create(appContext: Context, params: WorkerParameters): ListenableWorker {
-            return TwoMinerDataWorker(appContext, params, apiService, twoMinerMapper, twoMinerDao)
+            return TwoMinerDataWorker(appContext, params, apiService, twoMinerMapper, twoMinerDao, coinDao)
         }
     }
 

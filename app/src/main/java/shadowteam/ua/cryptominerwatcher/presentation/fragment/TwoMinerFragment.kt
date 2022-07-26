@@ -79,7 +79,10 @@ class TwoMinerFragment : Fragment() {
                     true
                 }
                 R.id.page_reward ->{
-                    Toast.makeText(requireContext(),"Reward", Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainerAddons, RewardFragment.newInstance())
+                        .commit()
                     true
                 }
                 R.id.page_settings ->{

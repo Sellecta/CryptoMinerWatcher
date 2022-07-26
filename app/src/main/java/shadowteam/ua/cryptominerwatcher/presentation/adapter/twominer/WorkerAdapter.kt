@@ -12,8 +12,7 @@ import javax.inject.Inject
 
 class WorkerAdapter @Inject constructor(
     private val application: Application
-):
-    ListAdapter<Worker, WorkerViewHolder>(WorkersDifUtils()){
+): ListAdapter<Worker, WorkerViewHolder>(WorkersDifUtils()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkerViewHolder {
         val binding = WorkerItemBinding.inflate(
