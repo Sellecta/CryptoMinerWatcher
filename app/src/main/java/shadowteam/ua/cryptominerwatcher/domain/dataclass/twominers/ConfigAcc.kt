@@ -5,5 +5,6 @@ data class ConfigAcc (
     val ipHint: String,
     val ipWorkerName: String,
     val minPayout: Int,
-    val paymentHubHint: String
+    val paymentHubHint: String,
+    val allowedMinPayout:Int
 )

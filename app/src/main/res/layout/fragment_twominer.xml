@@ -5,529 +5,530 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFirst30percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
-
-    <com.google.android.material.card.MaterialCardView
-        style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineFirst30percent"
+        app:layout_constraintBottom_toTopOf="@+id/toggleButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/viewCardFirstHorizontal"
-                style="@style/Divider_Horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <View
-                android:id="@+id/viewCardFirstVertical"
-                style="@style/Divider_Vertical"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/firstCard"
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/viewCardFirstHorizontal"
+                        style="@style/Divider_Horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <View
+                        android:id="@+id/viewCardFirstVertical"
+                        style="@style/Divider_Vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
 
 
-            <TextView
-                android:id="@+id/textViewUnBalance"
+                    <TextView
+                        android:id="@+id/textViewUnBalance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="0.000053" />
+
+                    <TextView
+                        android:id="@+id/textViewUnBalanceUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewUnBalance"
+                        tools:text="$0.06" />
+
+                    <TextView
+                        android:id="@+id/textViewUnBalanceLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/unconfirmed_card_title"
+                        app:layout_constraintBottom_toTopOf="@id/viewCardFirstHorizontal"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewUnBalanceLableUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/balance_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewUnBalanceLabel"
+                        app:layout_constraintStart_toEndOf="@+id/textViewUnBalanceLabel" />
+
+                    <Button
+                        android:id="@+id/buttonBalanceInfo"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_infoicon_button"
+                        app:layout_constraintEnd_toStartOf="@id/viewCardFirstVertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+
+                    <Button
+                        android:id="@+id/buttonBalancePay"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_infoicon_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:id="@+id/textViewToPaidBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="0.000443" />
+
+                    <TextView
+                        android:id="@+id/textViewToPaidUSD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewToPaidBalance"
+                        tools:text="$0.54" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleToPaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/unpaid_card_title"
+                        app:layout_constraintBottom_toTopOf="@+id/viewCardFirstHorizontal"
+                        app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+
+                        android:max="100"
+                        android:progress="34"
+                        android:progressDrawable="@drawable/my_progress"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewTitleToPaid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical" />
+
+                    <TextView
+                        android:id="@+id/textViewPercentProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                        tools:text="34%" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/balance_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleToPaid"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleToPaid" />
+
+                    <TextView
+                        android:id="@+id/textViewTotalPaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewCardFirstHorizontal"
+                        tools:text="0.493165" />
+
+                    <TextView
+                        android:id="@+id/textViewTotalPaidUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTotalPaid"
+                        tools:text="$601.71" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleTotalPaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/total_card_title"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/paid_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleTotalPaid"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleTotalPaid" />
+
+                    <TextView
+                        android:id="@+id/textViewLast24Reward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical"
+                        app:layout_constraintTop_toBottomOf="@id/viewCardFirstHorizontal"
+                        tools:text="0.004723" />
+
+                    <TextView
+                        android:id="@+id/textViewLats24RewardUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewLast24Reward"
+                        tools:layout_editor_absoluteX="211dp"
+                        tools:text="$5.76" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleLast24Reward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/last_24_hours_card_title"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/reward_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleLast24Reward"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleLast24Reward" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/twoCard"
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/firstCard"
+                tools:ignore="MissingConstraints">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/viewCardTwoHorizontal"
+                        style="@style/Divider_Horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <View
+                        android:id="@+id/viewCardTwoVertical"
+                        style="@style/Divider_Vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textViewCurrentHashNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="387.83" />
+
+                    <TextView
+                        android:id="@+id/textViewCurrentHashUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/mh_s_card_title"
+                        android:textColor="@color/text_silver"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentHashNumber"
+                        app:layout_constraintStart_toEndOf="@+id/textViewCurrentHashNumber" />
+
+                    <TextView
+                        android:id="@+id/textViewCurrentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/current_card_title"
+                        app:layout_constraintBottom_toTopOf="@id/viewCardTwoHorizontal"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/hashrate_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentTitle"
+                        app:layout_constraintStart_toEndOf="@+id/textViewCurrentTitle" />
+
+                    <TextView
+                        android:id="@+id/textViewAvgHash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="213dp"
+                        tools:text="359.96" />
+
+                    <TextView
+                        android:id="@+id/textViewAvgHashUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/mh_s_card_title"
+                        android:textColor="@color/text_silver"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewAvgHash"
+                        app:layout_constraintStart_toEndOf="@+id/textViewAvgHash" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleAvg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/average_card_title"
+                        app:layout_constraintBottom_toTopOf="@id/viewCardTwoHorizontal"
+                        app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
+                        tools:layout_editor_absoluteX="213dp"
+                        tools:layout_editor_absoluteY="65dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/hashrate_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleAvg"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleAvg" />
+
+                    <TextView
+                        android:id="@+id/textViewMinerOnline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewCardTwoHorizontal"
+                        tools:text="4" />
+
+                    <TextView
+                        android:id="@+id/textViewMinerOffline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/text_silver"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewMinerOnline"
+                        app:layout_constraintStart_toEndOf="@+id/textViewMinerOnline"
+                        tools:text="/ 1" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleWorkerOnline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/workers_card_title"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/online_card_title"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleWorkerOnline"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleWorkerOnline" />
+
+                    <TextView
+                        android:id="@+id/textViewEstimatrdDayProfit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
+                        app:layout_constraintTop_toBottomOf="@id/viewCardTwoHorizontal"
+                        tools:text="0.004691" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleEths"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/eth_card_title"
+                        android:textColor="@color/text_silver"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewEstimatrdDayProfit"
+                        app:layout_constraintStart_toEndOf="@+id/textViewEstimatrdDayProfit" />
+
+                    <TextView
+                        android:id="@+id/textViewDayProfitUSD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/text_silver"
+                        app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewEstimatrdDayProfit"
+                        tools:text="$5.75" />
+
+                    <TextView
+                        android:id="@+id/textViewTitleDayProfit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:maxLines="2"
+                        android:singleLine="false"
+                        android:text="@string/day_profit_card_title"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerAddons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                tools:text="0.000053"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewUnBalanceUsd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="$0.06"
-                android:textColor="@color/text_silver"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewUnBalance" />
-
-            <TextView
-                android:id="@+id/textViewUnBalanceLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/unconfirmed_card_title"
-                app:layout_constraintBottom_toTopOf="@id/viewCardFirstHorizontal"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewUnBalanceLableUsd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/balance_card_title"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewUnBalanceLabel"
-                app:layout_constraintStart_toEndOf="@+id/textViewUnBalanceLabel" />
-
-            <Button
-                android:id="@+id/buttonBalanceInfo"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_infoicon_button"
-                app:layout_constraintEnd_toStartOf="@id/viewCardFirstVertical"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-
-            <Button
-                android:id="@+id/buttonBalancePay"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_infoicon_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/textViewToPaidBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                tools:text="0.000443"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewToPaidUSD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="$0.54"
-                android:textColor="@color/text_silver"
-                app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textViewToPaidBalance" />
-
-            <TextView
-                android:id="@+id/textViewTitleToPaid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/unpaid_card_title"
-                app:layout_constraintBottom_toTopOf="@+id/viewCardFirstHorizontal"
-                app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="6dp"
-
-                android:max="100"
-                android:progress="34"
-                android:progressDrawable="@drawable/my_progress"
-                app:layout_constraintBottom_toTopOf="@+id/textViewTitleToPaid"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/viewCardFirstVertical" />
-
-            <TextView
-                android:id="@+id/textViewPercentProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                tools:text="34%"
-                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-                app:layout_constraintEnd_toEndOf="@+id/progressBar" />
-
-            <TextView
-                android:id="@+id/textViewTitleBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/balance_card_title"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleToPaid"
-                app:layout_constraintStart_toEndOf="@+id/textViewTitleToPaid" />
-
-            <TextView
-                android:id="@+id/textViewTotalPaid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                tools:text="0.493165"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewCardFirstHorizontal" />
-
-            <TextView
-                android:id="@+id/textViewTotalPaidUsd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="$601.71"
-                android:textColor="@color/text_silver"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTotalPaid" />
-
-            <TextView
-                android:id="@+id/textViewTitleTotalPaid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/total_card_title"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twoCard"
+                app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/paid_card_title"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleTotalPaid"
-                app:layout_constraintStart_toEndOf="@+id/textViewTitleTotalPaid" />
-
-            <TextView
-                android:id="@+id/textViewLast24Reward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                tools:text="0.004723"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical"
-                app:layout_constraintTop_toBottomOf="@id/viewCardFirstHorizontal" />
-
-            <TextView
-                android:id="@+id/textViewLats24RewardUsd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="$5.76"
-                android:textColor="@color/text_silver"
-                app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical"
-                app:layout_constraintTop_toBottomOf="@+id/textViewLast24Reward"
-                tools:layout_editor_absoluteX="211dp" />
-
-            <TextView
-                android:id="@+id/textViewTitleLast24Reward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/last_24_hours_card_title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/viewCardFirstVertical" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/reward_card_title"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleLast24Reward"
-                app:layout_constraintStart_toEndOf="@+id/textViewTitleLast24Reward" />
-
+            </androidx.fragment.app.FragmentContainerView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFirst60percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
-
-    <com.google.android.material.card.MaterialCardView
-        style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@id/guidelineFirst60percent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guidelineFirst30percent"
-        tools:ignore="MissingConstraints">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <View
-                android:id="@+id/viewCardTwoHorizontal"
-                style="@style/Divider_Horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <View
-                android:id="@+id/viewCardTwoVertical"
-                style="@style/Divider_Vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/textViewCurrentHashNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                tools:text="387.83"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewCurrentHashUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/mh_s_card_title"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentHashNumber"
-                app:layout_constraintStart_toEndOf="@+id/textViewCurrentHashNumber" />
-
-            <TextView
-                android:id="@+id/textViewCurrentTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/current_card_title"
-                app:layout_constraintBottom_toTopOf="@id/viewCardTwoHorizontal"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/hashrate_card_title"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentTitle"
-                app:layout_constraintStart_toEndOf="@+id/textViewCurrentTitle" />
-
-            <TextView
-                android:id="@+id/textViewAvgHash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="359.96"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="213dp" />
-
-            <TextView
-                android:id="@+id/textViewAvgHashUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mh_s_card_title"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewAvgHash"
-                app:layout_constraintStart_toEndOf="@+id/textViewAvgHash" />
-
-            <TextView
-                android:id="@+id/textViewTitleAvg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/average_card_title"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"
-                app:layout_constraintBottom_toTopOf="@id/viewCardTwoHorizontal"
-                tools:layout_editor_absoluteX="213dp"
-                tools:layout_editor_absoluteY="65dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hashrate_card_title"
-                android:textColor="@color/text_silver"
-                android:layout_marginStart="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleAvg"
-                app:layout_constraintStart_toEndOf="@+id/textViewTitleAvg" />
-
-            <TextView
-                android:id="@+id/textViewMinerOnline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="4"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewCardTwoHorizontal" />
-
-            <TextView
-                android:id="@+id/textViewMinerOffline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="/ 1"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/text_silver"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewMinerOnline"
-                app:layout_constraintStart_toEndOf="@+id/textViewMinerOnline" />
-
-            <TextView
-                android:id="@+id/textViewTitleWorkerOnline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/workers_card_title"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/online_card_title"
-                android:textColor="@color/text_silver"
-                android:layout_marginStart="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleWorkerOnline"
-                app:layout_constraintStart_toEndOf="@+id/textViewTitleWorkerOnline" />
-
-            <TextView
-                android:id="@+id/textViewEstimatrdDayProfit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="0.004691"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/viewCardTwoHorizontal"
-                app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical"/>
-
-            <TextView
-                android:id="@+id/textViewTitleEths"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/eth_card_title"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_silver"
-                android:layout_marginStart="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewEstimatrdDayProfit"
-                app:layout_constraintStart_toEndOf="@+id/textViewEstimatrdDayProfit" />
-
-            <TextView
-                android:id="@+id/textViewDayProfitUSD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="$5.75"
-                android:textColor="@color/text_silver"
-                android:layout_marginStart="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/textViewEstimatrdDayProfit"
-                app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical" />
-
-            <TextView
-                android:id="@+id/textViewTitleDayProfit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="4dp"
-                android:maxLines="2"
-                android:singleLine="false"
-                android:text="@string/day_profit_card_title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/viewCardTwoVertical" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/guidelineFirst60percent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:singleSelection="true">
+
         <Button
             android:id="@+id/button1"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            />
+            android:text="B" />
+
         <Button
             android:id="@+id/button2"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            />
+            android:text="B" />
+
         <Button
             android:id="@+id/button3"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            />
+            android:text="B" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerAddons"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton"
-        app:layout_constraintVertical_bias="0.0">
-
-    </androidx.fragment.app.FragmentContainerView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,5 +11,4 @@ data class Stats (
     val lastShareTime: Int,
     val paid: BigDecimal,
     val paidUSD:Double
-
     )

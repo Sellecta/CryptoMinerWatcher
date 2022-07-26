@@ -23,7 +23,6 @@ class CoinDataWorker(
     override suspend fun doWork(): Result {
         while (true){
             try {
-                Log.i("REFRESH_EXCEPTION", "test1")
                 val topCoins = apiService.getTopCoinsList()
                 val fSym = coinMapper.mapNamesListToString(topCoins)
                 val jsonContainer = apiService.getCoinFullInfo(fromSymbol = fSym)
@@ -49,7 +48,7 @@ class CoinDataWorker(
     }
 
     companion object{
-        private const val REFRESH_DATA_TIME = 10000L
+        private const val REFRESH_DATA_TIME = 40000L
         const val NAME_WORKER = "RefreshDataWorker"
 
         fun makeRequest(): OneTimeWorkRequest{

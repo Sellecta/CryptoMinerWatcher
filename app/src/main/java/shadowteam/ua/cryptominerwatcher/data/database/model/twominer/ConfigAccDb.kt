@@ -10,5 +10,6 @@ data class ConfigAccDb (
     val ipHint: String,
     val ipWorkerName: String,
     val minPayout: Int,
+    val allowedMinPayout:Int,
     val paymentHubHint: String
 )

@@ -8,12 +8,14 @@ import shadowteam.ua.cryptominerwatcher.data.network.model.twominermodel.*
 import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.*
 import java.math.BigDecimal
 import java.math.MathContext
-import java.text.DecimalFormat
 import javax.inject.Inject
 
 class TwoMinerMapper @Inject constructor() {
 
-    fun mapTwoMinerAccDtoToTwoMinerAccDb(twoMinerAcc: TwoMinerAccDto, wallet:String): TwoMinerAccDb {
+    fun mapTwoMinerAccDtoToTwoMinerAccDb(
+        twoMinerAcc: TwoMinerAccDto,
+        wallet: String,
+    ): TwoMinerAccDb {
         return TwoMinerAccDb(
             wallet = wallet,
             currentHashrate = twoMinerAcc.currentHashrate,
@@ -30,31 +32,38 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    fun mapTwoMinerAccDbToEntity(twoMinerAcc: TwoMinerAccDb):TwoMinerAcc{
-        val price = "1600"
+    fun mapTwoMinerAccDbToEntity(twoMinerAcc: TwoMinerAccDb, price: String, minPay:Int): TwoMinerAcc {
         return TwoMinerAcc(
             wallet = twoMinerAcc.wallet,
-            currentHashrate = mapDataForLiveData(twoMinerAcc.currentHashrate, NUM_DIVINER_HASH,4).toDouble(),
-            hashrateAvg = mapDataForLiveData(twoMinerAcc.hashrateAvg, NUM_DIVINER_HASH,4).toDouble(),
-            reward24h = mapDataForLiveData(twoMinerAcc.reward24h, NUM_DIVINER_PAY,4).toDouble(),
-            paymentsTotal = mapDataForLiveData(twoMinerAcc.paymentsTotal, NUM_DIVINER_PAY,4).toDouble(),
+            currentHashrate = mapDataForBigDecimal(twoMinerAcc.currentHashrate,
+                NUM_DIVINER_HASH,
+                4).toDouble(),
+            hashrateAvg = mapDataForBigDecimal(twoMinerAcc.hashrateAvg,
+                NUM_DIVINER_HASH,
+                4).toDouble(),
+            reward24h = mapDataForBigDecimal(twoMinerAcc.reward24h, NUM_DIVINER_PAY, 4).toDouble(),
+            paymentsTotal = mapDataForBigDecimal(twoMinerAcc.paymentsTotal,
+                NUM_DIVINER_PAY,
+                4).toDouble(),
             sharesValid = twoMinerAcc.sharesValid,
             sharesInvalid = twoMinerAcc.sharesInvalid,
             sharesStale = twoMinerAcc.sharesStale,
             stats = mapStatsDbToEntity(twoMinerAcc.stats, price),
             workersTotal = twoMinerAcc.workersTotal,
             workersOnline = twoMinerAcc.workersOnline,
-            workersOffline = twoMinerAcc.workersOffline
+            workersOffline = twoMinerAcc.workersOffline,
+            progress = calculateProgress(twoMinerAcc.stats.balance,minPay),
+            reward24hUSD = calculateUSD(twoMinerAcc.reward24h, price)
         )
     }
 
-    fun mapJsonObjectWorkerToWorkerDb(workers: JsonObject,wallet: String) : List<WorkerDb> {
+    fun mapJsonObjectWorkerToWorkerDb(workers: JsonObject, wallet: String): List<WorkerDb> {
         val result = mutableListOf<WorkerDb>()
         val workerKeySet = workers.keySet()
-        for((numWorker, workerKey) in workerKeySet.withIndex()){
+        for ((numWorker, workerKey) in workerKeySet.withIndex()) {
             val currentJson = workers.getAsJsonObject(workerKey)
             val worker = Gson().fromJson(currentJson, WorkerDto::class.java)
-            result.add(mapWorkerDtoToWorkerDb(worker,numWorker,wallet,workerKey))
+            result.add(mapWorkerDtoToWorkerDb(worker, numWorker, wallet, workerKey))
         }
         return result
     }
@@ -80,20 +89,24 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    private fun mapStatsDbToEntity(stats: StatsDb, price: String) : Stats{
+    private fun mapStatsDbToEntity(stats: StatsDb, price: String): Stats {
         val priceCoin = price.toDouble()
         return Stats(
-            balance = mapDataForLiveData(stats.balance, NUM_DIVINER_PAY,2),
-            immature = mapDataForLiveData(stats.immature, NUM_DIVINER_PAY,2),
+            balance = mapDataForBigDecimal(stats.balance, NUM_DIVINER_PAY, 2),
+            immature = mapDataForBigDecimal(stats.immature, NUM_DIVINER_PAY, 2),
             lastShareTime = stats.lastShareTime,
-            paid = mapDataForLiveData(stats.paid, NUM_DIVINER_PAY,2),
-            balanceUsd = mapDataForLiveData(stats.balance, NUM_DIVINER_PAY,2).multiply(BigDecimal(priceCoin)).toDouble(),
-            immatureUSD = mapDataForLiveData(stats.immature, NUM_DIVINER_PAY,2).multiply(BigDecimal(priceCoin)).toDouble(),
-            paidUSD = mapDataForLiveData(stats.paid, NUM_DIVINER_PAY,2).multiply(BigDecimal(priceCoin)).toDouble(),
+            paid = mapDataForBigDecimal(stats.paid, NUM_DIVINER_PAY, 2),
+            balanceUsd = mapDataForBigDecimal(stats.balance, NUM_DIVINER_PAY, 2).multiply(BigDecimal(
+                priceCoin)).toDouble(),
+            immatureUSD = mapDataForBigDecimal(stats.immature,
+                NUM_DIVINER_PAY,
+                2).multiply(BigDecimal(priceCoin)).toDouble(),
+            paidUSD = mapDataForBigDecimal(stats.paid, NUM_DIVINER_PAY, 2).multiply(BigDecimal(
+                priceCoin)).toDouble(),
         )
     }
 
-    fun mapWorkerDbToEntity(worker: WorkerDb) : Worker {
+    fun mapWorkerDbToEntity(worker: WorkerDb): Worker {
         return Worker(
             name = worker.name,
             hrAvg = worker.hrAvg,
@@ -107,7 +120,7 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    fun mapPaymentDbToEntity(payment: PaymentDb): Payment{
+    fun mapPaymentDbToEntity(payment: PaymentDb): Payment {
         return Payment(
             amount = payment.amount,
             timestamp = payment.timestamp,
@@ -116,16 +129,17 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    fun mapConfigAccDbToEntity(config: ConfigAccDb): ConfigAcc{
+    fun mapConfigAccDbToEntity(config: ConfigAccDb): ConfigAcc {
         return ConfigAcc(
             ipHint = config.ipHint,
             ipWorkerName = config.ipWorkerName,
             minPayout = config.minPayout,
-            paymentHubHint = config.paymentHubHint
+            paymentHubHint = config.paymentHubHint,
+            allowedMinPayout = config.allowedMinPayout
         )
     }
 
-    private fun statsDtoToStatsDb(stats:StatsDto):StatsDb{
+    private fun statsDtoToStatsDb(stats: StatsDto): StatsDb {
         return StatsDb(
             balance = stats.balance,
             immature = stats.immature,
@@ -134,7 +148,7 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    private fun mapPaymentDtoToPaymentDb(payment: PaymentDto, wallet:String, id:Int): PaymentDb{
+    private fun mapPaymentDtoToPaymentDb(payment: PaymentDto, wallet: String, id: Int): PaymentDb {
         return PaymentDb(
             id = id,
             wallet = wallet,
@@ -145,7 +159,11 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-    private fun mapSumRewardDtoToSumRewardDb(sumReward: SumRewardDto, wallet: String, id: Int):SumRewardDb{
+    private fun mapSumRewardDtoToSumRewardDb(
+        sumReward: SumRewardDto,
+        wallet: String,
+        id: Int,
+    ): SumRewardDb {
         return SumRewardDb(
             id = id,
             wallet = wallet,
@@ -157,9 +175,19 @@ class TwoMinerMapper @Inject constructor() {
         )
     }
 
-     private fun mapDataForLiveData(inputData:Int, diviner:Double, roundCount: Int):BigDecimal{
-         val res = inputData / diviner
-         return BigDecimal(res).round(MathContext(roundCount))
+    private fun mapDataForBigDecimal(inputData: Int, diviner: Double, roundCount: Int): BigDecimal {
+        val res = inputData / diviner
+        return BigDecimal(res).round(MathContext(roundCount))
+    }
+
+    private fun calculateUSD(inputData: Int, price: String):Double{
+        val tempNumb = inputData / NUM_DIVINER_PAY
+        val decimalNumb = BigDecimal(tempNumb).multiply(BigDecimal(price))
+        return decimalNumb.toDouble()
+    }
+
+    private fun calculateProgress(inputData: Int,  minPay:Int): Int{
+        return ((inputData/minPay.toDouble())*100).toInt()
     }
 
     fun mapConfigAccDtoToConfigAccDb(config: ConfigDto, walletTwoMiner: String): ConfigAccDb {
@@ -168,7 +196,8 @@ class TwoMinerMapper @Inject constructor() {
             ipHint = config.ipHint,
             ipWorkerName = config.ipWorkerName,
             minPayout = config.minPayout,
-            paymentHubHint = config.paymentHubHint
+            paymentHubHint = config.paymentHubHint,
+            allowedMinPayout = config.allowedMinPayout
         )
     }
 
@@ -177,8 +206,8 @@ class TwoMinerMapper @Inject constructor() {
         walletTwoMiner: String,
     ): List<PaymentDb> {
         val result = mutableListOf<PaymentDb>()
-        for((numPayment, payment)  in payments.withIndex()){
-            val paymentDb = mapPaymentDtoToPaymentDb(payment,walletTwoMiner,numPayment)
+        for ((numPayment, payment) in payments.withIndex()) {
+            val paymentDb = mapPaymentDtoToPaymentDb(payment, walletTwoMiner, numPayment)
             result.add(paymentDb)
         }
         return result
@@ -189,14 +218,14 @@ class TwoMinerMapper @Inject constructor() {
         walletTwoMiner: String,
     ): List<SumRewardDb> {
         val result = mutableListOf<SumRewardDb>()
-        for ((numSumReward, sumReward) in sumRewards.withIndex()){
-            val sumRewardDb = mapSumRewardDtoToSumRewardDb(sumReward,walletTwoMiner,numSumReward)
+        for ((numSumReward, sumReward) in sumRewards.withIndex()) {
+            val sumRewardDb = mapSumRewardDtoToSumRewardDb(sumReward, walletTwoMiner, numSumReward)
             result.add(sumRewardDb)
         }
         return result
     }
 
-    companion object{
+    companion object {
         private const val NUM_DIVINER_PAY = 1_000_000_000.0
         private const val NUM_DIVINER_HASH = 1_000_000.0
     }

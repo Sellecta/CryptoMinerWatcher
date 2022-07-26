@@ -14,7 +14,7 @@ interface TwoMinerDao {
     fun getAllWorkers():LiveData<List<WorkerDb>>
 
     @Query("SELECT * FROM twominer_acc")
-     fun getAllTwoMinerDbAcc():TwoMinerAccDb
+     fun getAllTwoMinerDbAcc():LiveData<TwoMinerAccDb>
 
     @Query("SELECT * FROM twominer_acc_config")
     fun getConfigAccDb():LiveData<ConfigAccDb>
@@ -24,6 +24,9 @@ interface TwoMinerDao {
 
     @Query("SELECT * FROM twominer_sumreward")
     fun getAllSumReward():List<SumRewardDb>
+
+    @Query("SELECT allowedMinPayout FROM twominer_acc_config")
+    fun getMinAllowedPay():Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkerDb(worker: WorkerDb)

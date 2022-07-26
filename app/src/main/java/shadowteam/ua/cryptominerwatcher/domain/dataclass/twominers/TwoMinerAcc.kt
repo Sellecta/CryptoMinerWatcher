@@ -6,6 +6,7 @@ data class TwoMinerAcc(
     val currentHashrate: Double,
     val hashrateAvg: Double,
     val reward24h: Double,
+    val reward24hUSD: Double,
     val paymentsTotal: Double,
     val sharesInvalid: Int,
     val sharesStale: Int,
@@ -13,5 +14,6 @@ data class TwoMinerAcc(
     val stats: Stats,
     val workersOffline: Int,
     val workersOnline: Int,
-    val workersTotal: Int
+    val workersTotal: Int,
+    val progress:Int
 )

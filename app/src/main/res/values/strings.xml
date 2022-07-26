@@ -3,6 +3,9 @@
     <string name="symbols_template">%s / %s</string>
     <string name="percent_template">%.2f %%</string>
     <string name="hint_wallet">Wallet</string>
+    <string name="price_usd_title">$%.2f</string>
+    <string name="percent_progress">%s %%</string>
+    <string name="offline_workers_title">/ %s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="workers_card_title">Workers</string>

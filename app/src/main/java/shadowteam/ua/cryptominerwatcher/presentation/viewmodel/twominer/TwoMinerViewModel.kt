@@ -12,11 +12,14 @@ class TwoMinerViewModel @Inject constructor(
     private val getTwoMinerAccUseCase: GetTwoMinerAccUseCase
 ) :ViewModel() {
 
-     var _twoMinerAccLiveData  = MutableLiveData<TwoMinerAcc>()
+    private val _twoMinerAccLiveData  = MutableLiveData<TwoMinerAcc>()
+    val twoMinerAccLiveData: LiveData<TwoMinerAcc>
+    get() = _twoMinerAccLiveData
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            _twoMinerAccLiveData.postValue(getTwoMinerAccUseCase()) }
+     //   viewModelScope.launch(Dispatchers.IO) {
+            _twoMinerAccLiveData.postValue(getTwoMinerAccUseCase())
+        //}
 
     }
 }

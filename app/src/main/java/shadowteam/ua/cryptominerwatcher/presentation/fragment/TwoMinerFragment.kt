@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import shadowteam.ua.cryptominerwatcher.R
 import shadowteam.ua.cryptominerwatcher.databinding.FragmentTwominerBinding
+import shadowteam.ua.cryptominerwatcher.domain.dataclass.twominers.TwoMinerAcc
 import shadowteam.ua.cryptominerwatcher.presentation.application.CryptoMinerApplication
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.TwoMinerViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.viewmodelfactory.ViewModelFactory
@@ -55,18 +56,34 @@ class TwoMinerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         component.inject(this)
-        viewModel._twoMinerAccLiveData.observe(viewLifecycleOwner){
-            with(binding){
-                textViewUnBalance.text = it.stats.balance.toString()
-                textViewTotalPaid.text = it.stats.paid.toString()
-                textViewToPaidBalance.text = it.stats.immature.toString()
-                textViewUnBalanceUsd.text = it.stats.immatureUSD.toString()
-                textViewToPaidUSD.text = it.stats.balanceUsd.toString()
-                textViewTotalPaidUsd.text = it.stats.paidUSD.toString()
-            }
+        viewModel.twoMinerAccLiveData.observe(viewLifecycleOwner){
+            fillTextView(it)
         }
     }
 
+    private fun fillTextView(acc:TwoMinerAcc){
+        val usdTitleTemplate = resources.getString(R.string.price_usd_title)
+        with(binding){
+            textViewUnBalance.text = acc.stats.balance.toString()
+            textViewTotalPaid.text = acc.stats.paid.toString()
+            textViewToPaidBalance.text = acc.stats.immature.toString()
+            textViewUnBalanceUsd.text =  String.format(usdTitleTemplate, acc.stats.immatureUSD)
+            textViewToPaidUSD.text = String.format(usdTitleTemplate, acc.stats.balanceUsd)
+            textViewTotalPaidUsd.text = String.format(usdTitleTemplate, acc.stats.paidUSD)
+            progressBar.progress = acc.progress
+            textViewPercentProgress.text = String.format(resources.getString(R.string.percent_progress), acc.progress)
+            textViewLast24Reward.text = acc.reward24h.toString()
+            textViewLats24RewardUsd.text = String.format(usdTitleTemplate, acc.reward24hUSD)
+            textViewCurrentHashNumber.text = acc.currentHashrate.toString()
+            textViewAvgHash.text = acc.hashrateAvg.toString()
+            textViewMinerOnline.text = acc.workersOnline.toString()
+            if(acc.workersOffline>0){
+                textViewMinerOffline.text = String.format(resources.getString(R.string.offline_workers_title), acc.workersOffline)
+            }else{ textViewMinerOffline.text = ""}
+            Log.i("test1","Cikl_observer")
+        }
+
+    }
     companion object {
 
         private const val WALLET = "wallet"

@@ -49,11 +49,6 @@ class DetailActivity : AppCompatActivity() {
         viewModel.coinListLiveData.observe(this) {
             coinAdapter.submitList(it)
         }
-
-        CoroutineScope(Dispatchers.Main).launch {
-
-        }
-
         binding.walletField.setEndIconOnClickListener {
             supportFragmentManager
                 .beginTransaction()

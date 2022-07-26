@@ -16,7 +16,7 @@ import shadowteam.ua.cryptominerwatcher.data.database.model.twominer.*
     TwoMinerAccDb::class,
     ConfigAccDb::class,
     PaymentDb::class,
-    SumRewardDb::class], version = 5, exportSchema = false)
+    SumRewardDb::class], version = 6, exportSchema = false)
 @TypeConverters(MyConvertor::class)
 abstract class AppDatabase : RoomDatabase() {
 

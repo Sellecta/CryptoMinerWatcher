@@ -41,10 +41,14 @@ class TwoMinerRepositoryImpl @Inject constructor(
     }
 
     override fun getTwoMinerAcc(): TwoMinerAcc{
+//        val priceCoin = coinDao.getPriceCoinUSD(ETH)
+//        val minPay = twoMinerDao.getMinAllowedPay()
+        val it = twoMinerDao.getAllTwoMinerDbAcc()
+
 //        return Transformations.map(twoMinerDao.getAllTwoMinerDbAcc()){
-//            twoMinerMapper.mapTwoMinerAccDbToEntity(it)
-        return  twoMinerMapper.mapTwoMinerAccDbToEntity( twoMinerDao.getAllTwoMinerDbAcc())
-     //   }
+//            twoMinerMapper.mapTwoMinerAccDbToEntity(it, priceCoin, minPay)
+//        }
+        return  twoMinerMapper.mapTwoMinerAccDbToEntity( twoMinerDao.getAllTwoMinerDbAcc().value!!, "5555555",555555555)
     }
 
     override fun getTwoMinerConfig(): LiveData<ConfigAcc> {
