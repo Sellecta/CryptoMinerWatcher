@@ -187,7 +187,9 @@ class TwoMinerMapper @Inject constructor() {
     }
 
     private fun calculateProgress(inputData: Int,  minPay:Int): Int{
-        return ((inputData/minPay.toDouble())*100).toInt()
+
+        val progress = ((inputData/minPay.toDouble())*100).toInt()
+        return  if(progress<=100) progress else 100
     }
 
     fun mapConfigAccDtoToConfigAccDb(config: ConfigDto, walletTwoMiner: String): ConfigAccDb {

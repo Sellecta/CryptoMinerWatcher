@@ -2,9 +2,7 @@ package shadowteam.ua.cryptominerwatcher.data.repository
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import retrofit2.HttpException
@@ -40,15 +38,16 @@ class TwoMinerRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun getTwoMinerAcc(): TwoMinerAcc{
-//        val priceCoin = coinDao.getPriceCoinUSD(ETH)
-//        val minPay = twoMinerDao.getMinAllowedPay()
-        val it = twoMinerDao.getAllTwoMinerDbAcc()
-
-//        return Transformations.map(twoMinerDao.getAllTwoMinerDbAcc()){
-//            twoMinerMapper.mapTwoMinerAccDbToEntity(it, priceCoin, minPay)
-//        }
-        return  twoMinerMapper.mapTwoMinerAccDbToEntity( twoMinerDao.getAllTwoMinerDbAcc().value!!, "5555555",555555555)
+    override suspend fun getTwoMinerAcc(): LiveData<TwoMinerAcc>{
+        val twoMinerAccTemp = twoMinerDao.getAllTwoMinerDbAcc()
+        val newLiveTwoMinerAcc : LiveData<TwoMinerAcc> = twoMinerAccTemp.switchMap {
+            liveData {
+                val priceCoin = coinDao.getPriceCoinUSD(ETH)
+                val minPay = twoMinerDao.getMinAllowedPay()
+                emit(twoMinerMapper.mapTwoMinerAccDbToEntity(it,priceCoin,minPay))
+            }
+        }
+        return  newLiveTwoMinerAcc
     }
 
     override fun getTwoMinerConfig(): LiveData<ConfigAcc> {

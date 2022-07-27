@@ -11,7 +11,7 @@ interface TwoMinerRepository {
 
     fun loadData()
 
-    fun getTwoMinerAcc(): TwoMinerAcc
+    suspend fun getTwoMinerAcc(): LiveData<TwoMinerAcc>
 
     fun getTwoMinerConfig(): LiveData<ConfigAcc>
 

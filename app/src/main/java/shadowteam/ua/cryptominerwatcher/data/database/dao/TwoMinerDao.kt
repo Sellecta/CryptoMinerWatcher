@@ -26,7 +26,7 @@ interface TwoMinerDao {
     fun getAllSumReward():List<SumRewardDb>
 
     @Query("SELECT allowedMinPayout FROM twominer_acc_config")
-    fun getMinAllowedPay():Int
+    suspend fun getMinAllowedPay():Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkerDb(worker: WorkerDb)

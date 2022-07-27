@@ -80,7 +80,6 @@ class TwoMinerFragment : Fragment() {
             if(acc.workersOffline>0){
                 textViewMinerOffline.text = String.format(resources.getString(R.string.offline_workers_title), acc.workersOffline)
             }else{ textViewMinerOffline.text = ""}
-            Log.i("test1","Cikl_observer")
         }
 
     }

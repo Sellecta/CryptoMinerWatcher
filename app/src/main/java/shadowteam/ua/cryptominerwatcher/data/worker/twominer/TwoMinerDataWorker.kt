@@ -44,7 +44,6 @@ class TwoMinerDataWorker(
                         twoMinerAccDb,
                         configAccDb)
                     delay(REFRESH_DELAY)
-                    Log.i("test1","Cikl_worker")
                 }
             }
         } catch (e: Exception) {

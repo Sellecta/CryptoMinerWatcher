@@ -1,5 +1,6 @@
 package shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer
 
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,14 +13,13 @@ class TwoMinerViewModel @Inject constructor(
     private val getTwoMinerAccUseCase: GetTwoMinerAccUseCase
 ) :ViewModel() {
 
-    private val _twoMinerAccLiveData  = MutableLiveData<TwoMinerAcc>()
+    private var _twoMinerAccLiveData  = MutableLiveData<TwoMinerAcc>()
     val twoMinerAccLiveData: LiveData<TwoMinerAcc>
-    get() = _twoMinerAccLiveData
-
-    init {
-     //   viewModelScope.launch(Dispatchers.IO) {
-            _twoMinerAccLiveData.postValue(getTwoMinerAccUseCase())
-        //}
-
+    get(){
+        viewModelScope.launch {
+            _twoMinerAccLiveData = getTwoMinerAccUseCase() as MutableLiveData<TwoMinerAcc>
+        }
+        return _twoMinerAccLiveData
     }
+
 }
