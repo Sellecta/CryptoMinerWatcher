@@ -86,7 +86,10 @@ class TwoMinerFragment : Fragment() {
                     true
                 }
                 R.id.page_settings ->{
-                    Toast.makeText(requireContext(),"Settings", Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainerAddons, ConfigFragment.newInstance())
+                        .commit()
                     true
                 }
                 else -> false

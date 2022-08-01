@@ -33,7 +33,7 @@ class TwoMinerDataWorker(
                         walletTwoMiner)
                     val configAccDb =
                         twoMinerMapper.mapConfigAccDtoToConfigAccDb(twoMinerAccDto.config,
-                            walletTwoMiner)
+                            walletTwoMiner, priceETH, priceBTC)
                     val listPaymentDb = twoMinerMapper.mapListPaymentDtoToListPaymentDb(
                         twoMinerAccDto.payments,
                         walletTwoMiner)

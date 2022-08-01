@@ -26,4 +26,12 @@
     <string name="minutes_title">%s Minutes ago</string>
     <string name="seconds_title">%s Seconds ago</string>
     <string name="title_usd_sumReward">%.2f</string>
+    <string name="save_config">Save</string>
+    <string name="payment_title">You get your payout in Bitcoin (BTC) once a day. Every payout costs you less than $ 0.20</string>
+    <string name="minMaxPay">Minimum 0.005 ETH, Maximum 10 ETH</string>
+    <string name="ipTitleHint">x.x.x.57</string>
+    <string name="minimum_payout_title">Minimum Payout Value</string>
+    <string name="ip_address_title">IP Address of WORKER -</string>
+    <string name="account_settingsTitle">Account Settings</string>
+    <string name="config_minPay_title">ETH ($%.2f / %s BTC)</string>
 </resources>

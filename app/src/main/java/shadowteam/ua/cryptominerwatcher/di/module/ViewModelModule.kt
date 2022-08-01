@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import shadowteam.ua.cryptominerwatcher.di.annotation.ViewModelKey
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.coin.DetailViewModel
+import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.ConfigViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.SumRewardViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.TwoMinerViewModel
 import shadowteam.ua.cryptominerwatcher.presentation.viewmodel.twominer.WorkersViewModel
@@ -32,4 +33,9 @@ interface ViewModelModule {
     @ViewModelKey(SumRewardViewModel::class)
     @Binds
     fun bindsRewardViewModel(impl: SumRewardViewModel):ViewModel
+
+    @IntoMap
+    @ViewModelKey(ConfigViewModel::class)
+    @Binds
+    fun bindsConfigViewModel(impl: ConfigViewModel):ViewModel
 }

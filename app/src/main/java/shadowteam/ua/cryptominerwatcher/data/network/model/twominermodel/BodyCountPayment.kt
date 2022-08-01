@@ -11,5 +11,5 @@ data class BodyCountPayment (
     var key: String = "minPayout",
 
     @SerializedName("value")
-    var data3: String = "5000000",
+    var count: String = "5 000 000",
 )

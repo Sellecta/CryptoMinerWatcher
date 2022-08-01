@@ -7,8 +7,8 @@ import com.google.gson.annotations.Expose
 data class SaveRequest(
     @SerializedName("apiVersion")
     @Expose
-    val apiVersion: Int?,
+    val apiVersion: Int,
     @SerializedName("config")
     @Expose
-    val config: ConfigDto?
+    val config: ConfigDto
 )

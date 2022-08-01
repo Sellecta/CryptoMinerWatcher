@@ -11,10 +11,10 @@
 
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewASTitile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account Settings"
+            android:text="@string/account_settingsTitle"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginStart="18dp"
@@ -23,99 +23,106 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewIPTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:layout_marginStart="18dp"
-            android:text="IP Address of WORKER - "
+            android:text="@string/ip_address_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewASTitile" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textViewMinPayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:layout_marginStart="18dp"
-            android:text="Minimum Payout Value"
+            android:text="@string/minimum_payout_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextIP" />
 
         <EditText
-            android:id="@+id/editTextNumber"
-            android:layout_width="wrap_content"
+            android:id="@+id/editTextIP"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginTop="9dp"
             android:layout_marginStart="18dp"
-            android:hint="x.x.x.57"
-            android:inputType="number"
+            android:layout_marginTop="9dp"
+            android:ems="10"
+            android:hint="@string/ipTitleHint"
+            android:inputType="text"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewIPTitle"
+            android:autofillHints="no" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textViewWorkerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1060GTX"
+            tools:text="1060GTX"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/textView5" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewIPTitle"
+            app:layout_constraintStart_toEndOf="@+id/textViewIPTitle" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
-            android:layout_width="wrap_content"
+            android:id="@+id/editTextMinPay"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
             android:layout_marginStart="18dp"
             android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewMinPayTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:autofillHints="no" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textViewPayCountTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="ETH($7.43 / 0.0003 BTC)"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumber2"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumber2" />
+            app:layout_constraintBottom_toBottomOf="@+id/editTextMinPay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextMinPay"
+            app:layout_constraintTop_toTopOf="@+id/editTextMinPay"
+            app:layout_constraintHorizontal_bias="0"
+            tools:text="ETH($7.43 / 0.0003 BTC)" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textViewMinMaxPayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
-            android:text="Minimum 0.005 ETH, Maximum 10 ETH"
+            android:text="@string/minMaxPay"
             android:textColor="@color/text_silver"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextMinPay" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textViewMsgTitile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginStart="18dp"
-            android:text="You get your payout in Bitcoin (BTC) once a day. Every payout costs you less than $ 0.20"
+            android:text="@string/payment_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewMinMaxPayTitle" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonSaveConfig"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="18dp"
-            android:text="Save"
-            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:text="@string/save_config"
             app:backgroundTint="@color/progress_orange"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewMsgTitile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

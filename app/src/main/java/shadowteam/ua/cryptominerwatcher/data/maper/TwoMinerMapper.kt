@@ -161,9 +161,11 @@ class TwoMinerMapper @Inject constructor(
         return ConfigAcc(
             ipHint = config.ipHint,
             ipWorkerName = config.ipWorkerName,
-            minPayout = config.minPayout,
+            minPayout = mapDataForBigDecimal(config.minPayout, NUM_DIVINER_PAY, 2),
             paymentHubHint = config.paymentHubHint,
-            allowedMinPayout = config.allowedMinPayout
+            allowedMinPayout = config.allowedMinPayout,
+            minPayoutUSD = config.minPayoutUSD,
+            minPayoutBTC = mapDoubleToBigDecimalAndRound(config.minPayoutBTC, 2)
         )
     }
 
@@ -203,7 +205,7 @@ class TwoMinerMapper @Inject constructor(
             offset = sumReward.offset,
             reward = mapDataForBigDecimal(sumReward.reward, NUM_DIVINER_PAY, 4).toDouble(),
             rewardUSD = calculateUSD(sumReward.reward,priceETH),
-            rewardBTC = (calculateUSD(sumReward.reward,priceETH) / priceBTC.toDouble())
+            rewardBTC = calculateBTC(priceETH, priceBTC, sumReward.reward),
         )
     }
 
@@ -227,20 +229,35 @@ class TwoMinerMapper @Inject constructor(
         return decimalNumb.toDouble()
     }
 
+    private fun mapDoubleToBigDecimalAndRound(input:Double, round:Int = 4):BigDecimal{
+        return BigDecimal(input).round(MathContext(round))
+    }
     private fun calculateProgress(inputData: Int,  minPay:Int): Int{
 
         val progress = ((inputData/minPay.toDouble())*100).toInt()
         return  if(progress<=100) progress else 100
     }
 
-    fun mapConfigAccDtoToConfigAccDb(config: ConfigDto, walletTwoMiner: String): ConfigAccDb {
+    private fun calculateBTC(priceETH: String,priceBTC: String, inputData:Int):Double{
+        val usdCount = calculateUSD(inputData, priceETH)
+        return usdCount / priceBTC.toDouble()
+    }
+
+    fun mapConfigAccDtoToConfigAccDb(
+        config: ConfigDto,
+        walletTwoMiner: String,
+        priceETH: String,
+        priceBTC: String,
+    ): ConfigAccDb {
         return ConfigAccDb(
             wallet = walletTwoMiner,
             ipHint = config.ipHint,
             ipWorkerName = config.ipWorkerName,
             minPayout = config.minPayout,
             paymentHubHint = config.paymentHubHint,
-            allowedMinPayout = config.allowedMinPayout
+            allowedMinPayout = config.allowedMinPayout,
+            minPayoutUSD = calculateUSD(config.minPayout, priceETH),
+            minPayoutBTC = calculateBTC(priceETH,priceBTC,config.minPayout)
         )
     }
 
@@ -274,9 +291,9 @@ class TwoMinerMapper @Inject constructor(
         return SumReward(
             interval = sumReward.interval,
             name = sumReward.name,
-            rewardETH = BigDecimal(sumReward.reward).round(MathContext(4)),
+            rewardETH = mapDoubleToBigDecimalAndRound(sumReward.reward),
             rewardUSD = sumReward.rewardUSD,
-            rewardBTC = BigDecimal(sumReward.rewardBTC).round(MathContext(4))
+            rewardBTC = mapDoubleToBigDecimalAndRound(sumReward.rewardBTC)
         )
     }
 
